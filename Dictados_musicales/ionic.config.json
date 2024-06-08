@@ -1,5 +1,7 @@
 {
   "name": "Dictados_musicales",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
