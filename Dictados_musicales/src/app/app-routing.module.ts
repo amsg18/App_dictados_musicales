@@ -11,6 +11,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'seleccion',
+    loadChildren: () => import('./seleccion/seleccion.module').then( m => m.SeleccionPageModule)
+  },
+  {
+    path: 'dictado',
+    loadChildren: () => import('./dictado/dictado.module').then( m => m.DictadoPageModule)
+  },
 ];
 
 @NgModule({
