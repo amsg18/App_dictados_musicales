@@ -14,6 +14,8 @@ export class DictadoPage implements OnInit {
   canvasElement!: HTMLCanvasElement; //Le aseguramos que va a ser de tipo HTMLCanvasElement
   pentagramCanvasElement!: HTMLCanvasElement;
 
+  combinedImageUrl: string = '';
+
   lastX: number = 0;
   lastY: number = 0;
   currentColour: string ='black'; //no se utiliza de momento
@@ -34,7 +36,7 @@ export class DictadoPage implements OnInit {
 
   }
 
-    setupCanvas() {
+  setupCanvas() {
     // Configurar tamaño de los canvas
     this.canvasElement.width = window.innerWidth;
     this.canvasElement.height = window.innerHeight;
@@ -138,5 +140,34 @@ export class DictadoPage implements OnInit {
   goMenu(){
     this.router.navigate(['/seleccion'])
   }
+
+
+
+  combineCanvases() {
+    // Crear un canvas nuevo en memoria para combinar la imagen de los dos canvas
+    let combinedCanvas = document.createElement('canvas');
+    combinedCanvas.width = this.canvasElement.width;
+    combinedCanvas.height = this.canvasElement.height;
+    let combinedCtx = combinedCanvas.getContext('2d');
+
+    // Dibujar el canvas del pentagrama
+    if (combinedCtx) {
+      combinedCtx.drawImage(this.pentagramCanvasElement, 0, 0);
+
+      // Dibujar el canvas del dictado
+      combinedCtx.drawImage(this.canvasElement, 0, 0);
+    }
+
+    this.combinedImageUrl = combinedCanvas.toDataURL('image/png');
+  }
+ 
+  downloadImage(){
+    this.combineCanvases();
+    let link = document.createElement('a');
+    link.href=this.combinedImageUrl;
+    link.download = 'canvas-image.png';
+    link.click();
+  }
+
 
 }
