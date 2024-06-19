@@ -10,11 +10,14 @@ import { Router } from '@angular/router';
 export class DictadoPage implements OnInit {
 
   @ViewChild('drawingCanvas') canvas: any;
+  @ViewChild('pentagramCanvas') pentagramCanvas: any;
   canvasElement!: HTMLCanvasElement; //Le aseguramos que va a ser de tipo HTMLCanvasElement
+  pentagramCanvasElement!: HTMLCanvasElement;
+
   lastX: number = 0;
   lastY: number = 0;
-  currentColour: string ='black';
-  sizeBrush:number = 1;
+  currentColour: string ='black'; //no se utiliza de momento
+  sizeBrush:number = 1;           // no se utiliza de momento
   borrador:boolean = false;
   constructor(private router:Router) { 
    
@@ -26,6 +29,30 @@ export class DictadoPage implements OnInit {
   ngAfterViewInit(){
     console.log(this.canvas);
     this.canvasElement = this.canvas.nativeElement;
+
+    this.pentagramCanvasElement = this.pentagramCanvas.nativeElement;
+    this.drawBackground();
+
+  }
+
+  drawBackground(){
+    let ctx = this.pentagramCanvasElement.getContext('2d');
+    if (ctx) {
+      let pentagram = new Image();
+      pentagram.src = "./assets/pentagrama.jpg";
+
+      pentagram.onload = () => {
+        if (ctx)
+          ctx.drawImage(pentagram, 0, 0);
+      }
+      // Dibuja la imagen de fondo (por ejemplo, una imagen cargada o un patrón)
+      // Aquí un ejemplo de patrón de cuadros
+    
+      ctx.fillRect(0, 0, this.pentagramCanvasElement.width, this.pentagramCanvasElement.height);
+    } else {
+      console.error('Contexto del canvas de fondo no disponible');
+    }
+
   }
 
   handleStart(ev:TouchEvent){

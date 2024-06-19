@@ -11,6 +11,7 @@
     </ion-toolbar>
   </ion-header>
 
+  <canvas #pentagramCanvas id="pentagramCanvas"></canvas>
   <canvas #drawingCanvas id="drawingCanvas"  (touchstart)="handleStart($event)"  (touchmove)="handleMove($event)" (touchend)="handleEnd($event)"></canvas>
  
   <ion-button (click)=" changeToBrush()" (click)="changeSize(1)">Lápiz</ion-button>
