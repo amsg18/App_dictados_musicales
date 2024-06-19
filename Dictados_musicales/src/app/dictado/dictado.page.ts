@@ -27,12 +27,24 @@ export class DictadoPage implements OnInit {
   ngOnInit() {
   }
   ngAfterViewInit(){
-    console.log(this.canvas);
     this.canvasElement = this.canvas.nativeElement;
 
     this.pentagramCanvasElement = this.pentagramCanvas.nativeElement;
-    this.drawBackground();
+    this.setupCanvas();
 
+  }
+
+    setupCanvas() {
+    // Configurar tamaño de los canvas
+    this.canvasElement.width = window.innerWidth;
+    this.canvasElement.height = window.innerHeight;
+
+    this.pentagramCanvasElement.width = window.innerWidth;
+    this.pentagramCanvasElement.height = window.innerHeight;
+
+    // Dibujar el pentagrama como fondo en el canvas de pentagrama
+    this.drawBackground();
+ 
   }
 
   drawBackground(){
