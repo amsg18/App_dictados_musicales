@@ -4,12 +4,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" [forceOverscroll]="false">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Dictado</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <canvas #drawingCanvas id="drawingCanvas"  (touchstart)="handleStart($event)"  (touchmove)="handleMove($event)" (touchend)="handleEnd($event)"></canvas>
+ 
+  <ion-button (click)=" changeToBrush()" (click)="changeSize(1)">Lápiz</ion-button>
+  <ion-button (click)=" changeToEraser()" (click)="changeSize(4)">Borrador</ion-button>
   <ion-button (click)="goHome();">Inicio</ion-button>
   <ion-button (click)="goMenu();">Atrás</ion-button>
 </ion-content>
