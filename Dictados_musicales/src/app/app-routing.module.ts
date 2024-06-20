@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'dictado',
     loadChildren: () => import('./dictado/dictado.module').then( m => m.DictadoPageModule)
   },
+  {
+    path: 'dictados2',
+    loadChildren: () => import('./dictados2/dictados2.module').then( m => m.Dictados2PageModule)
+  },
 ];
 
 @NgModule({

@@ -19,5 +19,8 @@ export class SeleccionPage implements OnInit {
   goDictado(){
     this.router.navigate(['/dictado'])
   }
+  goDictados2(){
+    this.router.navigate(['/dictados2'])
+  }
 
 }
