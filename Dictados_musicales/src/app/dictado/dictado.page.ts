@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -11,8 +12,13 @@ export class DictadoPage implements OnInit {
 
   @ViewChild('drawingCanvas') canvas: any;
   @ViewChild('pentagramCanvas') pentagramCanvas: any;
+  @ViewChild('audioElement') audioElemntRef!: ElementRef;
+
+  audio!: HTMLAudioElement;
+
   canvasElement!: HTMLCanvasElement; //Le aseguramos que va a ser de tipo HTMLCanvasElement
   pentagramCanvasElement!: HTMLCanvasElement;
+ 
 
   combinedImageUrl: string = '';
 
@@ -21,20 +27,23 @@ export class DictadoPage implements OnInit {
   currentColour: string ='black'; //no se utiliza de momento
   sizeBrush:number = 1;           // no se utiliza de momento
   borrador:boolean = false;
-  constructor(private router:Router) { 
-   
-  }
+  constructor(private router:Router) { }
 
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
   ngAfterViewInit(){
     this.canvasElement = this.canvas.nativeElement;
 
     this.pentagramCanvasElement = this.pentagramCanvas.nativeElement;
     this.setupCanvas();
 
+    this.audio = this.audioElemntRef.nativeElement;
+    this.audio.src = './assets/audios/wheel.wav';
+    this.audio.load();
+
+
   }
+
 
   setupCanvas() {
     // Configurar tamaño de los canvas
@@ -135,9 +144,14 @@ export class DictadoPage implements OnInit {
     this.sizeBrush = num;
   }
   goHome(){
+    this.pauseAudio();
+
     this.router.navigate(['/home'])
+
   }
   goMenu(){
+
+    this.pauseAudio();
     this.router.navigate(['/seleccion'])
   }
 
@@ -169,5 +183,33 @@ export class DictadoPage implements OnInit {
     link.click();
   }
 
+ // playAudio(){
+ //   let audio = new Audio('./assets/audios/wheel.wav');
+ //   audio.oncanplaythrough = () => {
+ //     audio.play();
+ //   };
+ //   audio.onerror = (err) => {
+ //     console.error('Error al cargar/reproducir el audio:', err);
+ //   };
+ //   audio.load();
+ // }
+  
+playAudio(){
+  if(this.audio){
+    this.audio.play();
+  }
+}
+
+ restartAudio() {
+   if (this.audio) {
+     this.audio.currentTime = 0;
+   }
+ }
+  
+ pauseAudio() {
+    if (this.audio) {
+      this.audio.pause(); // Detener la reproducción
+    }
+  }
 
 }
