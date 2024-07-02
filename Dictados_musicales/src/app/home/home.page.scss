@@ -19,6 +19,8 @@ ion-button {
 }
 .logo-font{
   margin-top: 50px;
+
+
 }
 footer{
   margin-top: 2em;
@@ -30,4 +32,33 @@ footer{
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.logo-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Espacio entre las imágenes y el texto */
+  position: relative;
+}
+
+.logo-img1 {
+  width: 120px; 
+  height: 180px;
+  transform: translateY(50px) rotate(-15deg);
+
+}
+.logo-img2{
+  width: 100px; 
+  height: 100px;
+  transform: translateY(170px)
+}
+
+.left-img {
+  margin-right: 10px; /* Espacio a la derecha de la imagen izquierda */
+}
+
+.right-img {
+  margin-left: 10px; /* Espacio a la izquierda de la imagen derecha */
+  margin-bottom: 10px;
 }
