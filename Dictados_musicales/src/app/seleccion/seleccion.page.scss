@@ -1,0 +1,46 @@
+
+ion-content{
+    --background: var(--blanco);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+   
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(calc((100% - 40px) / 3), 1fr)); 
+    gap: 1px;
+    justify-items: center;
+    align-items: center;
+}
+
+article{
+    background: var(--amarillo);
+    width: 12em;
+    height: 6em;
+    color: var(--negro);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    text-align: center; 
+    cursor: pointer;
+    border: 5px solid;
+    border-color: var(--azul-oscuro);
+    border-radius: 2em;
+    margin-bottom: 2em;
+
+}
+article > span{
+    font-size: 40px;
+}
+
+header{
+    font-size: 53px;
+}
+
+header > span{
+    display: block;
+}

@@ -16,8 +16,8 @@ export class EjerciciosPage implements OnInit {
   goHome(){
     this.router.navigate(['/home'])
   }
-  goDictado(){
-    this.router.navigate(['/dictado'])
+  goSelecDictado(){
+    this.router.navigate(['/seleccion'])
   }
   goDictados2(){
     this.router.navigate(['/dictados2'])

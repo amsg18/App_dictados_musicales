@@ -1,16 +1,40 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Seleccion</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Seleccion</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
+  <header class="title-font">
+    <span>Dictados con 3 notas</span>
+    <span>Do mi sol</span>
+
+  </header>
+  
+  <section class="body-font grid">
+    <article class="boton" (click)="goDictado()">
+        <span>1</span>
+    </article>
+    <article class="boton" (click)="goDictado()">
+      <span>2</span>
+    </article>
+    <article class="boton" (click)="goDictado()">
+      <span>3</span>
+    </article>
+    <article class="boton" (click)="goDictado()">
+      <span>4</span>
+    </article>
+    <article class="boton" (click)="goDictado()">
+      <span>5</span>
+    </article>
+    <article class="boton" (click)="goDictado()">
+      <span>6</span>
+    </article>
+    <article class="boton" (click)="goDictado()">
+      <span>7</span>
+    </article>
+    <article class="boton" (click)="goDictado()">
+      <span>8</span>
+    </article>
+    <article class="boton" (click)="goDictado()">
+      <span>9</span>
+    </article>
+  </section>
 
   <ion-button (click)="goHome();">Inicio</ion-button>
   <ion-button (click)="goDictado();">Dictado</ion-button>

@@ -1,7 +1,43 @@
 
+ion-content{
+    --background: var(--blanco);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+   
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    justify-items: center;
+    align-items: center;
+}
 
 article{
     background: linear-gradient(135deg, var(--azul-oscuro),var(--azul));
-    margin: 2em;
-    padding: 2em;
+    //margin: 2em;
+    //padding: 5em;
+    width: 18em;
+    height: 8em;
+    color: var(--blanco);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    text-align: center; 
+    cursor: pointer;
+}
+
+header{
+    font-size: 69px;;
+}
+
+.num-notas{
+    font-size: 40px;
+}
+.notas{
+    font-size: 30px;
 }

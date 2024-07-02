@@ -47,12 +47,16 @@
     color: var(--blanco);
     font-size: 97px;
 }
-
 .title-font{
-    font-family: 'Chau Philomene One', sans-serif;
+  font-family: "Chewy", system-ui;
+    color: var(--negro);
 }
 
 .body-font{
+    font-family: 'Chau Philomene One', sans-serif;
+}
+
+.text-font{
     font-family: "Alice", serif;
   font-weight: 400;
   font-style: normal;
