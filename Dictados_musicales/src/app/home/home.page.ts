@@ -12,8 +12,8 @@ export class HomePage {
 
   ngOnIni(){}
  
-  goMenu(){
-    this.router.navigate(['/seleccion'])
+  goEjercicios(){
+    this.router.navigate(['/ejercicios'])
   }
   
 
