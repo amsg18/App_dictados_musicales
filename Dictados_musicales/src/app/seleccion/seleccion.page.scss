@@ -1,19 +1,19 @@
 
 ion-content{
     --background: var(--blanco);
-    display:flex;
+    display:block;
     justify-content: center;
     align-items: center;
     text-align: center;
    
 }
+header{
+    display: flex;
+    justify-content: flex-start;
+}
 
-.grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(calc((100% - 40px) / 3), 1fr)); 
-    gap: 1px;
-    justify-items: center;
-    align-items: center;
+h1, h2{
+    font-size: 50px; 
 }
 
 article{
@@ -36,11 +36,49 @@ article{
 article > span{
     font-size: 40px;
 }
-
-header{
-    font-size: 53px;
+article > p{
+    font-size: 40px;
+}
+.icon-home{
+    color:var(--azul-oscuro);
+    font-size: 40px;
 }
 
-header > span{
-    display: block;
+.grid{
+    display: grid;
+    //grid-template-columns: repeat(auto-fill, minmax(calc((100% - 40px) / 3), 1fr)); 
+    gap: 1px;
+    justify-items: center;
+    align-items: center;
+   
+}
+
+.title-section{
+    flex-grow: 1; //Para que ocupe el espacio restante
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.icon-section{
+    padding: 10px;
+}
+
+@media (min-width:791px){
+    .grid{
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+
+@media (min-width:477px) and (max-width: 790px){
+    .grid{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media (max-width:476px){
+    .grid {
+        grid-template-columns: 1fr;
+    }
 }
