@@ -176,18 +176,21 @@ export class DictadoPage implements OnInit {
   goHome(){
     this.pauseAudio();
     this.clearCanvas();
-
+    this.closeModalHome();
     this.router.navigate(['/home'])
 
   }
   goDictados(){
     this.pauseAudio();
     this.clearCanvas();
+    this.closeModalDictados();
     this.router.navigate(['/seleccion'])
+
   }
 
   goCorreccion(){
     this.pauseAudio();
+    this.closeModalCorreccion();
     this.router.navigate(['/correccion'])
   }
 
@@ -247,4 +250,47 @@ playAudio(){
     }
   }
 
+  openModalHome() {
+    const modal = document.getElementById('myModal');
+    if (modal) {
+      modal.style.display = 'block';
+    }
+  }
+
+  // Método para cerrar el modal
+  closeModalHome() {
+    const modal = document.getElementById('myModal');
+    if (modal) {
+      modal.style.display = 'none';
+    }
+  }
+
+  openModalDictados() {
+    const modal = document.getElementById('myModalDictados');
+    if (modal) {
+      modal.style.display = 'block';
+    }
+  }
+
+  // Método para cerrar el modal
+  closeModalDictados() {
+    const modal = document.getElementById('myModalDictados');
+    if (modal) {
+      modal.style.display = 'none';
+    }
+  }
+  openModalCorreccion() {
+    const modal = document.getElementById('myModalCorreccion');
+    if (modal) {
+      modal.style.display = 'block';
+    }
+  }
+
+  // Método para cerrar el modal
+  closeModalCorreccion() {
+    const modal = document.getElementById('myModalCorreccion');
+    if (modal) {
+      modal.style.display = 'none';
+    }
+  }
 }

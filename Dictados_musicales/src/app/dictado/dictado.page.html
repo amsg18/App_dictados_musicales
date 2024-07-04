@@ -1,9 +1,57 @@
 
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <section class="modal-title">
+      <p class="title-font coment1">Si sales perderá el progreso realizado</p>
+      <h1 class="title-font coment2">¿Deseas salir?</h1>
+    </section>
+    <section class="opciones-salir">
+      <div class="modal-button" (click)="closeModalHome()">
+        <i class="icon-cancel cruz" ></i>
+      </div>
+      <div class="modal-button" (click)="goHome()">
+        <i class="icon-ok check"></i>
+      </div>
+    </section>  
+  </div>
+</div>
+<div id="myModalDictados" class="modal">
+  <div class="modal-content">
+    <section class="modal-title">
+      <p class="title-font coment1">Si sales perderá el progreso realizado</p>
+      <h1 class="title-font coment2">¿Deseas salir?</h1>
+    </section>
+    <section class="opciones-salir">
+      <div class="modal-button" (click)="closeModalDictados()">
+        <i class="icon-cancel cruz" ></i>
+      </div>
+      <div class="modal-button" (click)="goDictados()">
+        <i class="icon-ok check"></i>
+      </div>
+    </section>  
+  </div>
+</div>
+<div id="myModalCorreccion" class="modal">
+  <div class="modal-content">
+    <section class="modal-title modal-correccion">
+      <h1 class="title-font coment2">¿Deseas finalizar la tarea?</h1>
+    </section>
+    <section class="opciones-salir">
+      <div class="modal-button" (click)="closeModalCorreccion()">
+        <i class="icon-cancel cruz" ></i>
+      </div>
+      <div class="modal-button" (click)="goCorreccion()">
+        <i class="icon-ok check"></i>
+      </div>
+    </section>  
+  </div>
+</div>
+
 
 <ion-content [fullscreen]="true" [forceOverscroll]="false">
   <header>
     <section class="icon-section">
-      <i class="icon-home" (click)="goHome()"></i>
+      <i class="icon-home" (click)="openModalHome()"></i>
     </section>
   </header>
   <section class="canvas-section">  
@@ -20,16 +68,17 @@
       <canvas #drawingCanvas id="drawingCanvas"  (touchstart)="handleStart($event)"  (touchmove)="handleMove($event)" (touchend)="handleEnd($event)"></canvas>
     </article>
   </section>
+  
 
   <audio #audioElement></audio>
 
   <footer>
-    <i class="icon-left-open" (click)="goDictados()"></i>
+    <i class="icon-left-open" (click)="openModalDictados()"></i>
     <section>
       <i class="icon-play" (click)="playAudio()"></i>
     </section>
     <section>
-      <i class="icon-ok cuadro-boton " (click)="goCorreccion()"></i>
+      <i class="icon-ok cuadro-boton " id="ok" (click)="openModalCorreccion()"></i>
     </section>
   </footer>
 
