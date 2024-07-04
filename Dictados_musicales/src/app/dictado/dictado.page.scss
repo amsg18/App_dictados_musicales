@@ -11,7 +11,7 @@ canvas {
 header{
   display: flex;
   justify-content: flex-start;
-  margin-bottom: -40px;
+  margin-bottom: -10px;
 
 }
 i {
@@ -103,20 +103,20 @@ article {
 @media (min-width:901px){
   canvas{
     width: 800px;
-    height: 400px;
+    height: 390px;
   }
 }
 
 @media (min-width:700px) and (max-width: 900px){
   canvas{
     width: 600px;
-    height: 400px;
+    height: 390px;
   }
 }
 
 @media (max-width:699px){
   canvas{
     width: 400px;
-    height: 400px;
+    height: 390px;
   }
 }
