@@ -4,7 +4,7 @@
 
   <header>
     <section class="icon-section">
-      <i class="icon-home"></i>
+      <i class="icon-home" (click)="goHome()"></i>
     </section>
     <section class="title-section">
       <h1 class="title-font">Dictados con 3 notas</h1>
@@ -42,7 +42,7 @@
     </article>
   </section>
 
-  <ion-button (click)="goHome();">Inicio</ion-button>
-  <ion-button (click)="goDictado();">Dictado</ion-button>
-  <ion-button (click)="goDictados2();">Dictado2</ion-button>
+  <footer>
+    <i class="icon-left-open" (click)="goEjercicios()"></i>
+  </footer>
 </ion-content>

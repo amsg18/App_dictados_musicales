@@ -1,27 +1,36 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Dictado</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content [fullscreen]="true" [forceOverscroll]="false">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Dictado</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <canvas #pentagramCanvas id="pentagramCanvas"></canvas>
-  <canvas #drawingCanvas id="drawingCanvas"  (touchstart)="handleStart($event)"  (touchmove)="handleMove($event)" (touchend)="handleEnd($event)"></canvas>
- 
-  <ion-button (click)=" changeToBrush()" (click)="changeSize(1)">Lápiz</ion-button>
-  <ion-button (click)=" changeToEraser()" (click)="changeSize(4)">Borrador</ion-button>
-  <ion-button (click)="goHome();">Inicio</ion-button>
-  <ion-button (click)="goMenu();">Atrás</ion-button>
-
-  <ion-button (click)="playAudio();">Play</ion-button>
-
-  <ion-button (click)="downloadImage();">Capturar Imagen</ion-button>
+  <header>
+    <section class="icon-section">
+      <i class="icon-home" (click)="goHome()"></i>
+    </section>
+  </header>
+  <section class="canvas-section">  
+    <article class="icon-column">
+      <div class="lapiz">
+        <i class = "icon-pencil cuadro-boton" (click)="changeToBrush()"></i>
+      </div>
+      <div>
+        <i class = "icon-eraser cuadro-boton" (click)=" changeToEraser()"></i>
+      </div>
+      </article>
+    <article class="canvas-container">
+      <canvas #pentagramCanvas id="pentagramCanvas"></canvas>
+      <canvas #drawingCanvas id="drawingCanvas"  (touchstart)="handleStart($event)"  (touchmove)="handleMove($event)" (touchend)="handleEnd($event)"></canvas>
+    </article>
+  </section>
 
   <audio #audioElement></audio>
+
+  <footer>
+    <i class="icon-left-open" (click)="goDictados()"></i>
+    <section>
+      <i class="icon-play" (click)="playAudio()"></i>
+    </section>
+    <section>
+      <i class="icon-ok cuadro-boton " (click)="goCorreccion()"></i>
+    </section>
+  </footer>
+
 </ion-content>

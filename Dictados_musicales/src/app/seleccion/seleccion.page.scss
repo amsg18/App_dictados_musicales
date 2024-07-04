@@ -39,9 +39,18 @@ article > span{
 article > p{
     font-size: 40px;
 }
-.icon-home{
+
+i {
     color:var(--azul-oscuro);
     font-size: 40px;
+    cursor: pointer;
+}
+
+footer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
 }
 
 .grid{
@@ -65,13 +74,13 @@ article > p{
     padding: 10px;
 }
 
-@media (min-width:791px){
+@media (min-width:681px){
     .grid{
         grid-template-columns: repeat(3,1fr);
     }
 }
 
-@media (min-width:477px) and (max-width: 790px){
+@media (min-width:477px) and (max-width: 680px){
     .grid{
         grid-template-columns: repeat(2,1fr);
     }

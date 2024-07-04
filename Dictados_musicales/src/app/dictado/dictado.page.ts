@@ -15,18 +15,17 @@ export class DictadoPage implements OnInit {
   @ViewChild('audioElement') audioElemntRef!: ElementRef;
 
   audio!: HTMLAudioElement;
-
   canvasElement!: HTMLCanvasElement; //Le aseguramos que va a ser de tipo HTMLCanvasElement
   pentagramCanvasElement!: HTMLCanvasElement;
- 
+
 
   combinedImageUrl: string = '';
-
   lastX: number = 0;
   lastY: number = 0;
   currentColour: string ='black'; //no se utiliza de momento
   sizeBrush:number = 1;           // no se utiliza de momento
   borrador:boolean = false;
+
   constructor(private router:Router) { }
 
 
@@ -59,34 +58,55 @@ export class DictadoPage implements OnInit {
   }
 
   drawBackground(){
-    let ctx = this.pentagramCanvasElement.getContext('2d');
-    if (ctx) {
-      let pentagram = new Image();
-      pentagram.src = "./assets/pentagrama.jpg";
+   // let ctx = this.pentagramCanvasElement.getContext('2d');
+   // if (ctx) {
+   //   let pentagram = new Image();
+   //   pentagram.src = "./assets/pentagrama_recortado.png";
+//
+   //   pentagram.onload = () => {
+   //     if (ctx)
+   //       ctx.drawImage(pentagram, 0, 0);
+   //   }
+   // 
+   //   ctx.fillRect(0, 0, this.pentagramCanvasElement.width, this.pentagramCanvasElement.height);
+   // } else {
+   //   console.error('Contexto del canvas de fondo no disponible');
+   // }
+   const ctx = this.pentagramCanvasElement.getContext('2d');
+   if (!ctx) {
+       console.error('No se pudo obtener el contexto 2D del canvas de pentagrama');
+       return;
+   }
 
-      pentagram.onload = () => {
-        if (ctx)
-          ctx.drawImage(pentagram, 0, 0);
-      }
-      // Dibuja la imagen de fondo (por ejemplo, una imagen cargada o un patrón)
-      // Aquí un ejemplo de patrón de cuadros
-    
-      ctx.fillRect(0, 0, this.pentagramCanvasElement.width, this.pentagramCanvasElement.height);
-    } else {
-      console.error('Contexto del canvas de fondo no disponible');
-    }
+   // Limpiar el canvas antes de dibujar
+   ctx.clearRect(0, 0, this.pentagramCanvasElement.width, this.pentagramCanvasElement.height);
+
+   // Crear una nueva imagen
+   const pentagram = new Image();
+   pentagram.src = "./assets/pentagrama_recortado.png";
+   
+   // Asegurarnos de que la imagen se ha cargado antes de dibujarla
+   pentagram.onload = () => {
+       ctx.drawImage(
+           pentagram,
+           0, 0,
+           pentagram.width, pentagram.height, // Tamaño original de la imagen
+           0, 0,
+           this.pentagramCanvasElement.width, this.pentagramCanvasElement.height // Tamaño al que se ajustará la imagen
+       );
+   };
 
   }
 
   handleStart(ev:TouchEvent){
-    console.log(ev);
     //Se obtiene la posición en x e y de donde se ha pulsado para dibujar
     let rect = this.canvasElement.getBoundingClientRect();
-    let offsetX = rect.left + window.scrollX - document.documentElement.clientLeft;
-    let offsetY = rect.top + window.scrollY - document.documentElement.clientTop;
-    this.lastX = ev.touches[0].pageX - offsetX;
-    this.lastY = ev.touches[0].pageY - offsetY;
-
+   let offsetX = rect.left + window.scrollX - document.documentElement.clientLeft;
+   let offsetY = rect.top + window.scrollY - document.documentElement.clientTop;
+   this.lastX = ev.touches[0].pageX - offsetX;
+   this.lastY = ev.touches[0].pageY - offsetY;
+  //  this.lastX = ev.touches[0]. clientX - rect.left;
+  //  this.lastY = ev.touches[0]. clientY - rect.top;
 
   }
 
@@ -104,6 +124,8 @@ export class DictadoPage implements OnInit {
     let offsetY = rect.top + window.scrollY - document.documentElement.clientTop;
     let currentX = ev.touches[0].pageX - offsetX;
     let currentY = ev.touches[0].pageY - offsetY;
+  // const currentX = ev.touches[0].clientX - rect.left;
+   //const currentY = ev.touches[0].clientY - rect.top;
 
     if(ctx){
       if(this.borrador){
@@ -143,18 +165,31 @@ export class DictadoPage implements OnInit {
   changeSize(num:number){
     this.sizeBrush = num;
   }
+
+  clearCanvas() {
+    let ctx = this.canvasElement.getContext('2d');
+    if (ctx) {
+      ctx.clearRect(0, 0, this.canvasElement.width, this.canvasElement.height);
+    }
+  }
+
   goHome(){
     this.pauseAudio();
+    this.clearCanvas();
 
     this.router.navigate(['/home'])
 
   }
-  goMenu(){
-
+  goDictados(){
     this.pauseAudio();
+    this.clearCanvas();
     this.router.navigate(['/seleccion'])
   }
 
+  goCorreccion(){
+    this.pauseAudio();
+    this.router.navigate(['/correccion'])
+  }
 
 
   combineCanvases() {

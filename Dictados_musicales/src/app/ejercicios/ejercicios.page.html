@@ -3,32 +3,38 @@
 
 <ion-content [fullscreen]="true">
 
-<header class="title-font">Ejercicios</header>
+  <header>
+    <section class="icon-section">
+      <i class="icon-home" (click)="goHome()"></i>
+    </section>
+    <section class="title-section">
+      <h1 class="title-font">Ejercicios</h1>
+    </section>
+  </header>
 
 
 <section class="body-font grid">
   <article class="cuadrado" (click)="goSelecDictado()">
-      <span class="num-notas">3 Notas</span>
-      <span class="notas">Do mi sol</span>
+      <h2 class="num-notas">3 Notas</h2>
+      <h3 class="notas">Do mi sol</h3>
   </article>
   <article class="cuadrado" (click)="goSelecDictado()">
-    <span class="num-notas">4 Notas</span>
-    <span class="notas">Do mi sol la</span>
+    <h2 class="num-notas">4 Notas</h2>
+    <h3 class="notas">Do mi sol la</h3>
   </article>
   <article class="cuadrado" (click)="goSelecDictado()">
-    <span class="num-notas">5 Notas</span>
-    <span class="notas">Do re mi sol la</span>
+    <h2 class="num-notas">5 Notas</h2>
+    <h3 class="notas">Do re mi sol la</h3>
   </article>
   <article class="cuadrado" (click)="goSelecDictado()">
-    <span class="num-notas">6 Notas</span>
-    <span class="notas">Do re mi fa sol la</span>
+    <h2 class="num-notas">6 Notas</h2>
+    <h3 class="notas">Do re mi fa sol la</h3>
   </article>
   <article class="cuadrado" (click)="goSelecDictado()">
-    <span class="num-notas">7 Notas</span>
-    <span class="notas">Do re mi fa sol la si</span>
+    <h2 class="num-notas">7 Notas</h2>
+    <h3 class="notas">Do re mi fa sol la si</h3>
   </article>
 </section>
 
-  <ion-button (click)="goHome();">Inicio</ion-button>
 
 </ion-content>
