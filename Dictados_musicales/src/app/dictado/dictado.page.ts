@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 
 
@@ -18,6 +19,8 @@ export class DictadoPage implements OnInit {
   canvasElement!: HTMLCanvasElement; //Le aseguramos que va a ser de tipo HTMLCanvasElement
   pentagramCanvasElement!: HTMLCanvasElement;
 
+  articleID!: number;
+  dictadosId!: number;
 
   combinedImageUrl: string = '';
   lastX: number = 0;
@@ -26,10 +29,17 @@ export class DictadoPage implements OnInit {
   sizeBrush:number = 1;           // no se utiliza de momento
   borrador:boolean = false;
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private route:ActivatedRoute) { 
+
+  }
 
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.articleID = +params['id']; // + es para convertir en número
+      this.dictadosId = +params['dictadosId'];
+    })
+   }
   ngAfterViewInit(){
     this.canvasElement = this.canvas.nativeElement;
 
@@ -37,7 +47,30 @@ export class DictadoPage implements OnInit {
     this.setupCanvas();
 
     this.audio = this.audioElemntRef.nativeElement;
-    this.audio.src = './assets/audios/wheel.wav';
+    
+    switch (this.articleID) {
+      case 1:
+        this.audio.src = './assets/audios/Dictado1.wav'; 
+        break;
+      case 2:
+        this.audio.src = './assets/audios/Dictado2.wav';
+        break;
+      case 3:
+        this.audio.src = './assets/audios/Dictado3.wav';
+        break;
+      case 4:
+        this.audio.src = './assets/audios/Dictado4.wav';
+      break;
+      case 5:
+        this.audio.src = './assets/audios/Dictado5.wav';
+      break;
+      case 6:
+        this.audio.src = './assets/audios/Dictado6.wav';
+      break;
+      default:
+        this.audio.src = './assets/audios/wheel.wav'; // Audio por defecto
+        break;
+    }
     this.audio.load();
 
 
@@ -83,7 +116,9 @@ export class DictadoPage implements OnInit {
 
    // Crear una nueva imagen
    const pentagram = new Image();
-   pentagram.src = "./assets/pentagrama_recortado.png";
+   if(this.articleID == 3 || this.articleID == 5 || this.articleID == 6 ){
+      pentagram.src = "./assets/pentagrama_recortado2.png"; 
+   }else  pentagram.src = "./assets/pentagrama_recortado.png";
    
    // Asegurarnos de que la imagen se ha cargado antes de dibujarla
    pentagram.onload = () => {

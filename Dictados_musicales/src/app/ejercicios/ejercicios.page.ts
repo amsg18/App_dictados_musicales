@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-ejercicios',
   templateUrl: './ejercicios.page.html',
@@ -16,11 +17,11 @@ export class EjerciciosPage implements OnInit {
   goHome(){
     this.router.navigate(['/home'])
   }
-  goSelecDictado(){
-    this.router.navigate(['/seleccion'])
+  goSelecDictado(dictadosId: number){
+    this.router.navigate(['/seleccion'], { queryParams: {id: dictadosId}});
   }
   goDictados2(){
-    this.router.navigate(['/dictados2'])
+    this.router.navigate(['/dictados2']);
   }
   
 

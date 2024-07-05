@@ -13,13 +13,16 @@ header{
 }
 
 h1, h2{
-    font-size: 50px; 
+    font-size: 40px; 
+}
+h2{
+    margin-top:-15px;
 }
 
 article{
     background: var(--amarillo);
     width: 12em;
-    height: 6em;
+    height: 5.8em;
     color: var(--negro);
     display: flex;
     flex-direction: column;
@@ -30,7 +33,7 @@ article{
     border: 5px solid;
     border-color: var(--azul-oscuro);
     border-radius: 2em;
-    margin-bottom: 2em;
+    margin-bottom: 1.50em;
 
 }
 article > span{
