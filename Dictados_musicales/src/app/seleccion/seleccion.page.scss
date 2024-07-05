@@ -76,6 +76,14 @@ footer {
 .icon-section{
     padding: 10px;
 }
+.boton:active{
+    transform: scale(0.9);    /* Escala al hacer clic */
+
+}
+.efecto:active{
+    transform: scale(0.9);
+  
+}
 
 @media (min-width:681px){
     .grid{

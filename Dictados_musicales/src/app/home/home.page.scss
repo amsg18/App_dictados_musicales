@@ -17,6 +17,9 @@ ion-button {
   font-size: 49px; /* Tamaño del texto, opcional */
   font-weight: bold; /* Peso del texto, opcional */
 }
+ion-button:active{
+  transform: scale(0.9);    /* Escala al hacer clic */
+}
 .logo-font{
   margin-top: 50px;
 

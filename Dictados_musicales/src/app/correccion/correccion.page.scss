@@ -109,7 +109,10 @@ ion-content{
     color: var(--blanco);
     font-size: 32px;
   }
+  .efecto:active{
+    transform: scale(0.9);
   
+}
   
   #pentagramCanvas, #drawingCanvas {
     position: absolute;

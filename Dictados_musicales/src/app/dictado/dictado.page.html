@@ -50,17 +50,17 @@
 
 <ion-content [fullscreen]="true" [forceOverscroll]="false">
   <header>
-    <section class="icon-section">
-      <i class="icon-home" (click)="openModalHome()"></i>
+    <section class="icon-section efecto">
+      <i class="icon-home efecto " (click)="openModalHome()"></i>
     </section>
   </header>
   <section class="canvas-section">  
     <article class="icon-column">
       <div class="lapiz">
-        <i class = "icon-pencil cuadro-boton" (click)="changeToBrush()"></i>
+        <i class = "icon-pencil cuadro-boton " (click)="changeToBrush()"></i>
       </div>
-      <div>
-        <i class = "icon-eraser cuadro-boton" (click)=" changeToEraser()"></i>
+      <div class="efecto">
+        <i class = "icon-eraser cuadro-boton " (click)=" changeToEraser()"></i>
       </div>
       </article>
     <article class="canvas-container">
@@ -73,12 +73,12 @@
   <audio #audioElement></audio>
 
   <footer>
-    <i class="icon-left-open" (click)="openModalDictados()"></i>
-    <section>
-      <i class="icon-play" (click)="playAudio()"></i>
+    <i class="icon-left-open " (click)="openModalDictados()"></i>
+    <section class="efecto">
+      <i class="icon-play efecto" (click)="playAudio()"></i>
     </section>
-    <section>
-      <i class="icon-ok cuadro-boton " id="ok" (click)="openModalCorreccion()"></i>
+    <section class="efecto">
+      <i class="icon-ok cuadro-boton  " id="ok" (click)="openModalCorreccion()"></i>
     </section>
   </footer>
 

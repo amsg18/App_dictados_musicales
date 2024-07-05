@@ -25,7 +25,14 @@ article{
     cursor: pointer;
 }
 
+article:active{
+    transform: scale(0.9);    /* Escala al hacer clic */
 
+}
+.efecto:active{
+    transform: scale(0.9);
+  
+}
 header{
     display: flex;
     justify-content: flex-start;

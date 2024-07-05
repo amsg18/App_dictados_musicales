@@ -68,3 +68,8 @@
 ion-button {
     text-transform: none; /* Anula la transformación a mayúsculas */
   }
+
+  i:active{
+    transform: scale(0.9);    /* Escala al hacer clic */
+
+  }

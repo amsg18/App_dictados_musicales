@@ -26,8 +26,14 @@ export class DictadoPage implements OnInit {
   lastX: number = 0;
   lastY: number = 0;
   currentColour: string ='black'; //no se utiliza de momento
-  sizeBrush:number = 1;           // no se utiliza de momento
+  sizeBrush:number = 2;           // no se utiliza de momento
   borrador:boolean = false;
+
+
+  pentagramCanvasLeft:number =0;
+  pentagramCanvasTop    :number = 0;
+  pentagramCanvasWidth  :number = 0;
+  pentagramCanvasHeight :number = 0;
 
   constructor(private router:Router, private route:ActivatedRoute) { 
 
@@ -45,6 +51,9 @@ export class DictadoPage implements OnInit {
 
     this.pentagramCanvasElement = this.pentagramCanvas.nativeElement;
     this.setupCanvas();
+
+
+
 
     this.audio = this.audioElemntRef.nativeElement;
     
@@ -78,9 +87,21 @@ export class DictadoPage implements OnInit {
 
 
   setupCanvas() {
-    // Configurar tamaño de los canvas
-    this.canvasElement.width = window.innerWidth;
-    this.canvasElement.height = window.innerHeight;
+    const canvas = document.getElementById('pentagramCanvas') as HTMLCanvasElement;
+
+    if(canvas){
+      
+      const style = window.getComputedStyle(canvas);
+      const visualWidth = parseFloat(style.width);
+      const visualHeight = parseFloat(style.height);
+      this.canvasElement.width = visualWidth;
+      this.canvasElement.height = visualHeight;
+  
+    }else{
+      this.canvasElement.width = 600;
+      this.canvasElement.height = 400;
+    }
+  
 
     this.pentagramCanvasElement.width = window.innerWidth;
     this.pentagramCanvasElement.height = window.innerHeight;
@@ -134,20 +155,32 @@ export class DictadoPage implements OnInit {
   }
 
   handleStart(ev:TouchEvent){
+  
     //Se obtiene la posición en x e y de donde se ha pulsado para dibujar
     let rect = this.canvasElement.getBoundingClientRect();
-   let offsetX = rect.left + window.scrollX - document.documentElement.clientLeft;
-   let offsetY = rect.top + window.scrollY - document.documentElement.clientTop;
-   this.lastX = ev.touches[0].pageX - offsetX;
-   this.lastY = ev.touches[0].pageY - offsetY;
-  //  this.lastX = ev.touches[0]. clientX - rect.left;
-  //  this.lastY = ev.touches[0]. clientY - rect.top;
+  // let offsetX = rect.left + window.scrollX - document.documentElement.clientLeft;
+  // let offsetY = rect.top + window.scrollY - document.documentElement.clientTop;
+  // this.lastX = ev.touches[0].pageX - offsetX;
+  // this.lastY = ev.touches[0].pageY - offsetY;
+    this.lastX = ev.touches[0]. clientX - rect.left;
+    this.lastY = ev.touches[0]. clientY - rect.top;
+
+
+//  if (this.lastX < 92 || this.lastX > 720 ||
+//    this.lastY < 100 || this.lastY > 500) {
+//  this.lastX = -1;
+//  this.lastY = -1; // Esto indica que el punto inicial está fuera de los límites
+//}
+
 
   }
 
 
   handleMove(ev:TouchEvent){
     //console.log(ev);
+    if (this.lastX === -1 || this.lastY === -1) {
+      return; // No dibujar si el punto inicial está fuera de los límites
+    }
     let ctx = this.canvasElement.getContext('2d');
     if(ctx){
       ctx.strokeStyle=this.currentColour;
@@ -159,6 +192,9 @@ export class DictadoPage implements OnInit {
     let offsetY = rect.top + window.scrollY - document.documentElement.clientTop;
     let currentX = ev.touches[0].pageX - offsetX;
     let currentY = ev.touches[0].pageY - offsetY;
+
+
+    //console.log(currentX, currentY);
   // const currentX = ev.touches[0].clientX - rect.left;
    //const currentY = ev.touches[0].clientY - rect.top;
 
@@ -172,7 +208,7 @@ export class DictadoPage implements OnInit {
         ctx.closePath();
       
         ctx.stroke();
-  
+
         this.lastX = currentX;
         this.lastY = currentY;
       }

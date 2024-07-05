@@ -6,6 +6,23 @@ ion-content{
 canvas {
   border-radius: 1.5em;
   position: relative;
+  width: 800px;
+  //height: 75vh;
+  height: 400px;
+  z-index: -2;
+
+}
+#pentagramCanvas{
+ // width: 600px;
+  //height: 400px;
+  z-index: -1;
+
+}
+#drawingCanvas{
+ // width:600px;
+
+  z-index: 0;
+
 
 }
 header{
@@ -39,8 +56,12 @@ article {
   flex: 1;
   justify-content: center;
   align-items: center;
+  align-content: center;
   height: 75vh;
   position:relative;
+ // width: 200px;
+  //height: 390px;
+
 
 
 }
@@ -57,10 +78,6 @@ article {
   align-items: flex-start;
   justify-content: center;
   margin-left:20px ;
-
-
-
-  
 }
 
 .lapiz{
@@ -131,6 +148,18 @@ article {
 .icon-eraser{
   color:var(--gris);
 }
+.icon-eraser:active{
+  transform: scale(0.9);    /* Escala al hacer clic */
+
+}
+.lapiz:active{
+  transform: scale(0.9);
+}
+
+.efecto:active{
+    transform: scale(0.9);
+  
+}
 #ok{
   color:var(--gris);
   margin-right: 20px;
@@ -142,6 +171,10 @@ article {
 .icon-play{
   font-size: 75px;
 }
+.icon-play:active{
+  transform: scale(0.9);    /* Escala al hacer clic */
+
+}
 
 .title-font{
   color: var(--blanco);
@@ -150,8 +183,13 @@ article {
   color: var(--rojo);
 
 }
+
 .check{
   color: var(--verde);
+
+}
+.modal-button:active{
+  transform: scale(0.9);  
 
 }
 
@@ -182,11 +220,15 @@ article {
   font-size: 48px ;
   margin-top:-20px;
 }
+.cuadro-boton {
+  transform: scale(0.9);
+}
 
 .modal-correccion{
   padding-top: 5em;
   padding-bottom: 2.5em;
 }
+
 #pentagramCanvas, #drawingCanvas {
   position: absolute;
 }
