@@ -65,7 +65,10 @@
       </article>
     <article class="canvas-container">
       <canvas #pentagramCanvas id="pentagramCanvas"></canvas>
-      <canvas #drawingCanvas id="drawingCanvas"  (touchstart)="handleStart($event)"  (touchmove)="handleMove($event)" (touchend)="handleEnd($event)"></canvas>
+      <canvas #drawingCanvas id="drawingCanvas"  (mousedown)="handleStart($event)"
+      (mousemove)="handleMove($event)"
+      (mouseup)="handleEnd($event)"
+       (touchstart)="handleStart($event)"  (touchmove)="handleMove($event)" (touchend)="handleEnd($event)"></canvas>
     </article>
   </section>
   

@@ -25,17 +25,12 @@ export class DictadoPage implements OnInit {
   dictadosId!: number;
 
   combinedImageUrl: string = '';
-  lastX: number = 0;
-  lastY: number = 0;
+  lastX: number = -1;
+  lastY: number = -1;
   currentColour: string ='black'; //no se utiliza de momento
   sizeBrush:number = 2;           // no se utiliza de momento
   borrador:boolean = false;
   currentTool = 'brush';
-
-  pentagramCanvasLeft:number =0;
-  pentagramCanvasTop    :number = 0;
-  pentagramCanvasWidth  :number = 0;
-  pentagramCanvasHeight :number = 0;
 
   constructor(private router:Router, private route:ActivatedRoute) { 
 
@@ -158,7 +153,7 @@ export class DictadoPage implements OnInit {
 
   }
 
-  handleStart(ev:TouchEvent){
+  handleStart(ev:Event){
   
     //Se obtiene la posición en x e y de donde se ha pulsado para dibujar
     let rect = this.canvasElement.getBoundingClientRect();
@@ -166,8 +161,14 @@ export class DictadoPage implements OnInit {
   // let offsetY = rect.top + window.scrollY - document.documentElement.clientTop;
   // this.lastX = ev.touches[0].pageX - offsetX;
   // this.lastY = ev.touches[0].pageY - offsetY;
+  if(ev instanceof TouchEvent){
     this.lastX = ev.touches[0]. clientX - rect.left;
     this.lastY = ev.touches[0]. clientY - rect.top;
+  } else if (ev instanceof MouseEvent) {
+    this.lastX = ev.clientX - rect.left;
+    this.lastY = ev.clientY - rect.top;
+  }
+    
 
 
 //  if (this.lastX < 92 || this.lastX > 720 ||
@@ -180,11 +181,12 @@ export class DictadoPage implements OnInit {
   }
 
 
-  handleMove(ev:TouchEvent){
+  handleMove(ev:Event){
     //console.log(ev);
     if (this.lastX === -1 || this.lastY === -1) {
-      return; // No dibujar si el punto inicial está fuera de los límites
+      return; // Salir si lastX o lastY no están definidos
     }
+
     let ctx = this.canvasElement.getContext('2d');
     if(ctx){
       ctx.strokeStyle=this.currentColour;
@@ -194,8 +196,15 @@ export class DictadoPage implements OnInit {
     let rect = this.canvasElement.getBoundingClientRect();
     let offsetX = rect.left + window.scrollX - document.documentElement.clientLeft;
     let offsetY = rect.top + window.scrollY - document.documentElement.clientTop;
-    let currentX = ev.touches[0].pageX - offsetX;
-    let currentY = ev.touches[0].pageY - offsetY;
+   
+   let currentX:number = 0 , currentY: number = 0;
+    if(ev instanceof TouchEvent){
+      currentX = ev.touches[0].pageX - offsetX;
+      currentY = ev.touches[0].pageY - offsetY;
+    } else if(ev instanceof MouseEvent){
+      currentX = ev.clientX - rect.left;
+      currentY = ev.clientY - rect.top;
+    }
 
 
     //console.log(currentX, currentY);
@@ -223,8 +232,13 @@ export class DictadoPage implements OnInit {
     }else console.log("Ctx is null");
   }
 
-  handleEnd(ev:TouchEvent){
+  handleEnd(ev:Event){
     //console.log(ev);
+    if(ev instanceof MouseEvent){
+      this.lastX =  -1 ;
+      this.lastY =  -1 ;  
+    
+    }
   }
 
   changeToEraser(){
