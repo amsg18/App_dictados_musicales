@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 
@@ -8,19 +8,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./ejercicios.page.scss'],
 })
 export class EjerciciosPage implements OnInit {
-
+  @ViewChild('audioButton') audioButtonRef!: ElementRef;
+  audio_button!: HTMLAudioElement;
   constructor(private router:Router) { }
 
   ngOnInit() {
   }
 
+  ngAfterViewInit(){
+    this.audio_button = this.audioButtonRef.nativeElement;
+    this.audio_button.src='./assets/audios/beep.wav';
+  }
+
   goHome(){
+    this.audio_button.play();
     this.router.navigate(['/home'])
   }
   goSelecDictado(dictadosId: number){
+    this.audio_button.play();
     this.router.navigate(['/seleccion'], { queryParams: {id: dictadosId}});
   }
   goDictados2(){
+    this.audio_button.play();
     this.router.navigate(['/dictados2']);
   }
   

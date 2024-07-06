@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,11 +8,20 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 
+  @ViewChild('audioButton') audioButtonRef!: ElementRef;
+  audio_button!: HTMLAudioElement;
+
   constructor(private router:Router) { }
 
-  ngOnIni(){}
+  ngOnInit(){}
  
+ngAfterViewInit(){
+  this.audio_button = this.audioButtonRef.nativeElement;
+  this.audio_button.src='./assets/audios/beep.wav';
+}
+
   goEjercicios(){
+    this.audio_button.play();
     this.router.navigate(['/ejercicios'])
   }
   

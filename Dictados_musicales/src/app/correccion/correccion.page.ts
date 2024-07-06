@@ -10,11 +10,13 @@ import { ActivatedRoute } from '@angular/router';
 export class CorreccionPage implements OnInit {
 
   @ViewChild('pentagramCanvas') pentagramCanvas: any;
+  @ViewChild('audioButton') audioButtonRef!: ElementRef;
 
   constructor(private router:Router, private route:ActivatedRoute) { }
 
   pentagramCanvasElement!: HTMLCanvasElement;
   imageId!: number;
+  audio_button!: HTMLAudioElement;
 
 
   ngOnInit() {
@@ -29,6 +31,8 @@ export class CorreccionPage implements OnInit {
   ngAfterViewInit(){
     this.pentagramCanvasElement = this.pentagramCanvas.nativeElement;
     this.setupCanvas();
+    this.audio_button = this.audioButtonRef.nativeElement;
+    this.audio_button.src='./assets/audios/beep.wav';
 
   }
 
@@ -96,6 +100,7 @@ export class CorreccionPage implements OnInit {
 
 
   downloadCorreccion(){
+    this.audio_button.play();
     const canvas = this.pentagramCanvasElement;
     const link = document.createElement('a');
     link.href = canvas.toDataURL('image/png');
@@ -103,10 +108,12 @@ export class CorreccionPage implements OnInit {
     link.click();
   }
   goHome(){
+    this.audio_button.play();
     this.router.navigate(['/home']);
   }
 
   goDictados(){
+    this.audio_button.play();
     this.router.navigate(['/seleccion']);
   }
 }

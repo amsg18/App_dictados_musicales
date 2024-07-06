@@ -229,6 +229,7 @@ export class DictadoPage implements OnInit {
 
   changeToEraser(){
     this.borrador=true;
+    this.audio_button.play();
   }
   changeToBrush(){
     this.borrador = false;
@@ -340,6 +341,7 @@ playAudio(){
     if (modal) {
       modal.style.display = 'none';
     }
+    this.audio_button.play();
   }
 
   openModalDictados() {
@@ -347,6 +349,7 @@ playAudio(){
     if (modal) {
       modal.style.display = 'block';
     }
+    this.audio_button.play();
   }
 
   // Método para cerrar el modal
@@ -355,12 +358,14 @@ playAudio(){
     if (modal) {
       modal.style.display = 'none';
     }
+    this.audio_button.play();
   }
   openModalCorreccion() {
     const modal = document.getElementById('myModalCorreccion');
     if (modal) {
       modal.style.display = 'block';
     }
+    this.audio_button.play();
   }
 
   // Método para cerrar el modal
@@ -369,5 +374,6 @@ playAudio(){
     if (modal) {
       modal.style.display = 'none';
     }
+    this.audio_button.play();
   }
 }

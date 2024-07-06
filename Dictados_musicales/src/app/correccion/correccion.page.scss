@@ -160,7 +160,12 @@ ion-content{
   
     @media (min-height:549px){
       canvas{
-        height: 390px;
+        height: 380px;
+      }
+      footer{
+        padding-bottom: -20px;
+        padding-top:-50px ;
+        height: 5em;
       }
     }
   

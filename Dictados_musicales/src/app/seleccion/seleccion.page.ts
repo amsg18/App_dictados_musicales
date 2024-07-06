@@ -13,6 +13,8 @@ export class SeleccionPage implements OnInit {
   @ViewChild('mainTitle', { static: false }) mainTitle!: ElementRef;
   @ViewChild('subtitle', { static: false }) subtitle!: ElementRef;
 
+  @ViewChild('audioButton') audioButtonRef!: ElementRef;
+  audio_button!: HTMLAudioElement;
 
   dictadosId !: number;
   constructor(private router:Router, private route:ActivatedRoute, private cdr: ChangeDetectorRef) { }
@@ -28,6 +30,8 @@ export class SeleccionPage implements OnInit {
 
   ngAfterViewInit(){
     this.updateTitlesIfReady();
+    this.audio_button = this.audioButtonRef.nativeElement;
+    this.audio_button.src='./assets/audios/beep.wav';
 
 
   }
@@ -70,13 +74,16 @@ export class SeleccionPage implements OnInit {
 
 
   goHome(){
+    this.audio_button.play();
     this.router.navigate(['/home']);
   }
   goDictado(articleId : number){
+    this.audio_button.play();
     this.router.navigate(['/dictado'], { queryParams: {id: articleId, dictadosId: this.dictadosId}});
   }
 
   goEjercicios(){
+    this.audio_button.play();
     this.router.navigate(['/ejercicios']);
   }
 

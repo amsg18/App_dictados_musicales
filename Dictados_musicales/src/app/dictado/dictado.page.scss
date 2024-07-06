@@ -98,7 +98,7 @@ article {
 
 .modal-content {
   background-color: var(--azul);
-  margin: 15% auto;
+  margin: 10% auto;
   padding: 20px;
 
   width: 80%;
@@ -240,27 +240,23 @@ article {
 @media (min-width:901px){
   canvas{
     width: 800px;
-    //height: 390px;
   }
 }
 
 @media (min-width:700px) and (max-width: 900px){
   canvas{
     width: 600px;
-    //height: 390px;
   }
 }
 
 @media (min-width:554px) and (max-width:699px){
   canvas{
     width: 495px;
-   // height: 390px;
   }
 }
 @media (min-width:530px) and (max-width:553px){
   canvas{
     width: 430px;
-   // height: 390px;
   }
   .modal-button{
     padding: 1em;
@@ -271,7 +267,6 @@ article {
 @media (min-width:493px) and (max-width:530px){
   canvas{
     width: 430px;
-   // height: 390px;
   }
 
   .modal-button{
@@ -283,7 +278,6 @@ article {
 @media (min-width:400px) and (max-width:493px){
   canvas{
     width: 340px;
-    //height: 390px;
   }
 
   .modal-button{
@@ -297,7 +291,6 @@ article {
     width:250px;
   }
   .modal-button{
-   //width:px;
     padding: 0.5em;
     padding-left: 1em;
     padding-right: 1em;
@@ -307,7 +300,11 @@ article {
   @media (min-height:549px){
     canvas{
       height: 390px;
+      .modal-button{
+        margin-top:-85px;
+      }
     }
+
   }
 
   @media (min-height:437px) and (max-height:549px){
@@ -335,6 +332,9 @@ article {
     .coment2{
       font-size: 45px;
     }
+    .modal-button{
+      margin-top:-85px;
+    }
   }
   @media (max-height:437px){
     canvas{
@@ -352,7 +352,8 @@ article {
       font-size: 45px;
     }
     .modal-content{
-      height: 200px;
+      height: 220px;
+
     }
     .coment1{
       margin-top: -10px;
@@ -361,5 +362,8 @@ article {
     }
     .coment2{
       font-size: 25px;
+    }
+    .modal-button{
+      margin-top:-50px;
     }
   }
