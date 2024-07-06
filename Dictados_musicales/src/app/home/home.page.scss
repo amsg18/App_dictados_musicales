@@ -65,3 +65,30 @@ footer{
   margin-left: 10px; /* Espacio a la izquierda de la imagen derecha */
   margin-bottom: 10px;
 }
+
+@media (max-height:325px){
+
+  .logo-container{
+    transform: scale(0.5) translateY(-200px);
+    padding-top: -2em;
+    padding-bottom: -5em;
+    
+  }
+
+  footer{
+    display: none;
+    
+  }
+  ion-button{
+    width:10em;
+    height: fit-content;
+    font-size: 20px;
+    padding: 0;
+    transform: scale(0.2) ;
+
+  }
+  .button{
+    transform: scale(0.8) translateY(-150px);
+    margin:0;
+  }
+}
