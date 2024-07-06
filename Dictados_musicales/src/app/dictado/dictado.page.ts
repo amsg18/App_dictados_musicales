@@ -14,8 +14,10 @@ export class DictadoPage implements OnInit {
   @ViewChild('drawingCanvas') canvas: any;
   @ViewChild('pentagramCanvas') pentagramCanvas: any;
   @ViewChild('audioElement') audioElemntRef!: ElementRef;
+  @ViewChild('audioButton') audioButtonRef!: ElementRef;
 
   audio!: HTMLAudioElement;
+  audio_button!: HTMLAudioElement;
   canvasElement!: HTMLCanvasElement; //Le aseguramos que va a ser de tipo HTMLCanvasElement
   pentagramCanvasElement!: HTMLCanvasElement;
 
@@ -28,7 +30,7 @@ export class DictadoPage implements OnInit {
   currentColour: string ='black'; //no se utiliza de momento
   sizeBrush:number = 2;           // no se utiliza de momento
   borrador:boolean = false;
-
+  currentTool = 'brush';
 
   pentagramCanvasLeft:number =0;
   pentagramCanvasTop    :number = 0;
@@ -56,6 +58,8 @@ export class DictadoPage implements OnInit {
 
 
     this.audio = this.audioElemntRef.nativeElement;
+    this.audio_button = this.audioButtonRef.nativeElement;
+    this.audio_button.src='./assets/audios/beep.wav';
     
     switch (this.articleID) {
       case 1:
@@ -77,7 +81,7 @@ export class DictadoPage implements OnInit {
         this.audio.src = './assets/audios/Dictado6.wav';
       break;
       default:
-        this.audio.src = './assets/audios/wheel.wav'; // Audio por defecto
+        this.audio.src = './assets/audios/Dictado1.wav'; // Audio por defecto
         break;
     }
     this.audio.load();
@@ -138,8 +142,8 @@ export class DictadoPage implements OnInit {
    // Crear una nueva imagen
    const pentagram = new Image();
    if(this.articleID == 3 || this.articleID == 5 || this.articleID == 6 ){
-      pentagram.src = "./assets/pentagrama_recortado2.png"; 
-   }else  pentagram.src = "./assets/pentagrama_recortado.png";
+      pentagram.src = "./assets/images/pentagrama_recortado2.png"; 
+   }else  pentagram.src = "./assets/images/pentagrama_recortado.png";
    
    // Asegurarnos de que la imagen se ha cargado antes de dibujarla
    pentagram.onload = () => {
@@ -228,6 +232,7 @@ export class DictadoPage implements OnInit {
   }
   changeToBrush(){
     this.borrador = false;
+    this.audio_button.play();
   }
   changeColour(colour:string){
     this.currentColour = colour;
@@ -262,7 +267,7 @@ export class DictadoPage implements OnInit {
   goCorreccion(){
     this.pauseAudio();
     this.closeModalCorreccion();
-    this.router.navigate(['/correccion'])
+    this.router.navigate(['/correccion'], {queryParams: {imageId: this.articleID}})
   }
 
 
@@ -326,6 +331,7 @@ playAudio(){
     if (modal) {
       modal.style.display = 'block';
     }
+    this.audio_button.play();
   }
 
   // Método para cerrar el modal

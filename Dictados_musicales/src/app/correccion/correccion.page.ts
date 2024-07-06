@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-correccion',
@@ -10,12 +11,19 @@ export class CorreccionPage implements OnInit {
 
   @ViewChild('pentagramCanvas') pentagramCanvas: any;
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private route:ActivatedRoute) { }
 
   pentagramCanvasElement!: HTMLCanvasElement;
+  imageId!: number;
 
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.imageId = +params['imageId'];
+      this.drawBackground();
+    })
+
+
   }
 
   ngAfterViewInit(){
@@ -24,6 +32,11 @@ export class CorreccionPage implements OnInit {
 
   }
 
+  //ngOnChanges(changes:SimpleChanges) {
+  //  if (changes['imageId']){
+  //    this.drawBackground();
+  //  }
+  //}
   setupCanvas(){
     this.pentagramCanvasElement.width = window.innerWidth;
     this.pentagramCanvasElement.height = window.innerHeight;
@@ -43,7 +56,30 @@ export class CorreccionPage implements OnInit {
 
    // Crear una nueva imagen
    const pentagram = new Image();
-   pentagram.src = "./assets/pentagrama_recortado.png";
+   switch (this.imageId){
+    case 1:
+      pentagram.src = "./assets/images/dictado1.png";
+      break;
+    case 2:
+      pentagram.src = "./assets/images/dictado2.png";
+      break;
+    case 3:
+      pentagram.src = "./assets/images/dictado3.png";
+      break;
+    case 4:
+      pentagram.src = "./assets/images/dictado4.png";
+      break;
+    case 5:
+      pentagram.src = "./assets/images/dictado5.png";
+      break;
+    case 6:
+      pentagram.src = "./assets/images/dictado6.png";
+      break;
+    default:
+        pentagram.src = "./assets/images/dictado1.png";
+      break
+   }
+
    
    // Asegurarnos de que la imagen se ha cargado antes de dibujarla
    pentagram.onload = () => {

@@ -228,7 +228,11 @@ article {
   padding-top: 5em;
   padding-bottom: 2.5em;
 }
+.selected-tool{
 
+ color:var(--blanco);
+ background: var(--azul);
+}
 #pentagramCanvas, #drawingCanvas {
   position: absolute;
 }
@@ -318,7 +322,7 @@ article {
       padding-top:-50px ;
     }
     .icon-play{
-      font-size: 45px;
+      font-size: 65px;
     }
     .modal-content{
       height: 300px;

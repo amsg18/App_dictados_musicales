@@ -57,10 +57,10 @@
   <section class="canvas-section">  
     <article class="icon-column">
       <div class="lapiz">
-        <i class = "icon-pencil cuadro-boton " (click)="changeToBrush()"></i>
+        <i class = "icon-pencil cuadro-boton " (click)="changeToBrush()" [ngClass]="{'selected-tool': borrador === false}"></i>
       </div>
       <div class="efecto">
-        <i class = "icon-eraser cuadro-boton " (click)=" changeToEraser()"></i>
+        <i class = "icon-eraser cuadro-boton " (click)=" changeToEraser()" [ngClass]="{'selected-tool': borrador === true}" ></i>
       </div>
       </article>
     <article class="canvas-container">
@@ -71,7 +71,7 @@
   
 
   <audio #audioElement></audio>
-
+  <audio #audioButton></audio>
   <footer>
     <i class="icon-left-open " (click)="openModalDictados()"></i>
     <section class="efecto play">
