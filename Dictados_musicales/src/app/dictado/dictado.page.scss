@@ -297,7 +297,7 @@ article {
   }
 }
 
-  @media (min-height:549px){
+  @media (min-height:520px){
     canvas{
       height: 390px;
       .modal-button{
@@ -307,7 +307,7 @@ article {
 
   }
 
-  @media (min-height:437px) and (max-height:549px){
+  @media (min-height:437px) and (max-height:520px){
     canvas{
       height: 300px;
     }

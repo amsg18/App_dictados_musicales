@@ -16,12 +16,14 @@ export class CorreccionPage implements OnInit {
 
   pentagramCanvasElement!: HTMLCanvasElement;
   imageId!: number;
+  tipo_ejercicio!:number;
   audio_button!: HTMLAudioElement;
 
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.imageId = +params['imageId'];
+      this.tipo_ejercicio = +params['tipo_ejercicio'];
       this.drawBackground();
     })
 
@@ -114,6 +116,6 @@ export class CorreccionPage implements OnInit {
 
   goDictados(){
     this.audio_button.play();
-    this.router.navigate(['/seleccion']);
+    this.router.navigate(['/seleccion' ], {queryParams: {id: this.tipo_ejercicio}});
   }
 }

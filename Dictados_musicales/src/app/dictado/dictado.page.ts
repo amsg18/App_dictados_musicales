@@ -23,6 +23,7 @@ export class DictadoPage implements OnInit {
 
   articleID!: number;
   dictadosId!: number;
+  numeroId!: number;
 
   combinedImageUrl: string = '';
   lastX: number = -1;
@@ -47,7 +48,7 @@ export class DictadoPage implements OnInit {
     this.canvasElement = this.canvas.nativeElement;
 
     this.pentagramCanvasElement = this.pentagramCanvas.nativeElement;
-    this.setupCanvas();
+
 
 
 
@@ -55,31 +56,81 @@ export class DictadoPage implements OnInit {
     this.audio = this.audioElemntRef.nativeElement;
     this.audio_button = this.audioButtonRef.nativeElement;
     this.audio_button.src='./assets/audios/beep.wav';
-    
-    switch (this.articleID) {
-      case 1:
+    switch (this.dictadosId) {
+      case 3 :
         this.audio.src = './assets/audios/Dictado1.wav'; 
+        this.numeroId = 1;
         break;
-      case 2:
-        this.audio.src = './assets/audios/Dictado2.wav';
+      case 4 :
+        if( this.articleID % 2 == 0 ){
+          this.audio.src = './assets/audios/Dictado6.wav'
+          this.numeroId = 6;
+        } else {
+          this.audio.src = './assets/audios/Dictado2.wav';
+          this.numeroId = 2;
+        }
         break;
-      case 3:
-        this.audio.src = './assets/audios/Dictado3.wav';
+      case 5 :
+          if( this.articleID == 1 || this.articleID == 4 || this.articleID == 7){
+            this.audio.src = './assets/audios/Dictado1.wav'; 
+            this.numeroId = 1;
+          }else if(this.articleID == 2 || this.articleID == 5 || this.articleID == 8){
+            this.audio.src = './assets/audios/Dictado2.wav'; 
+            this.numeroId = 2;
+          }else{
+            this.audio.src = './assets/audios/Dictado6.wav';
+            this.numeroId = 6;
+          }  
         break;
-      case 4:
-        this.audio.src = './assets/audios/Dictado4.wav';
-      break;
-      case 5:
-        this.audio.src = './assets/audios/Dictado5.wav';
-      break;
       case 6:
-        this.audio.src = './assets/audios/Dictado6.wav';
-      break;
-      default:
-        this.audio.src = './assets/audios/Dictado1.wav'; // Audio por defecto
+        if( this.articleID == 1 || this.articleID == 4 || this.articleID == 7){
+          this.audio.src = './assets/audios/Dictado3.wav'; 
+          this.numeroId = 3;
+        }else if(this.articleID == 2 || this.articleID == 5 || this.articleID == 8){
+          this.audio.src = './assets/audios/Dictado5.wav'; 
+          this.numeroId = 5;
+        }else{
+          this.audio.src = './assets/audios/Dictado4.wav';
+          this.numeroId = 4;
+        } 
+        break;
+      case 7:
+        switch (this.articleID) {
+          case 1:
+            this.audio.src = './assets/audios/Dictado1.wav'; 
+            this.numeroId = 1;
+            break;
+          case 2:
+            this.audio.src = './assets/audios/Dictado2.wav';
+            this.numeroId = 2;
+            break;
+          case 3:
+            this.audio.src = './assets/audios/Dictado3.wav';
+            this.numeroId = 3;
+            break;
+          case 4:
+            this.audio.src = './assets/audios/Dictado4.wav';
+            this.numeroId = 4;
+          break;
+          case 5:
+            this.audio.src = './assets/audios/Dictado5.wav';
+            this.numeroId = 5;
+          break;
+          case 6:
+            this.audio.src = './assets/audios/Dictado6.wav';
+            this.numeroId = 6;
+          break;
+          default:
+            this.audio.src = './assets/audios/Dictado1.wav'; // Audio por defecto
+            this.numeroId = 1;
+            break;
+        }
         break;
     }
+
+   
     this.audio.load();
+    this.setupCanvas();
 
 
   }
@@ -136,7 +187,7 @@ export class DictadoPage implements OnInit {
 
    // Crear una nueva imagen
    const pentagram = new Image();
-   if(this.articleID == 3 || this.articleID == 5 || this.articleID == 6 ){
+   if(this.numeroId == 3 || this.numeroId == 5 || this.numeroId == 6 ){
       pentagram.src = "./assets/images/pentagrama_recortado2.png"; 
    }else  pentagram.src = "./assets/images/pentagrama_recortado.png";
    
@@ -275,14 +326,14 @@ export class DictadoPage implements OnInit {
     this.pauseAudio();
     this.clearCanvas();
     this.closeModalDictados();
-    this.router.navigate(['/seleccion'])
+    this.router.navigate(['/seleccion'], {queryParams : {id: this.dictadosId}});
 
   }
 
   goCorreccion(){
     this.pauseAudio();
     this.closeModalCorreccion();
-    this.router.navigate(['/correccion'], {queryParams: {imageId: this.articleID}})
+    this.router.navigate(['/correccion'], {queryParams: {imageId: this.numeroId, tipo_ejercicio: this.dictadosId}})
   }
 
 

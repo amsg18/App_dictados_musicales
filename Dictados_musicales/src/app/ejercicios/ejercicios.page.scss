@@ -23,6 +23,7 @@ article{
     align-items: center; /* Centra horizontalmente */
     text-align: center; 
     cursor: pointer;
+    margin-bottom: 1em;
 }
 
 article:active{
@@ -65,8 +66,33 @@ i {
 }
 .grid{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
     gap: 1px;
     justify-items: center;
     align-items: center;
+}
+
+
+
+@media (min-width:741px){
+    .last-item {
+        grid-column: span 2; /* Hace que ocupe las 3 columnas */
+        justify-self: center; /* Centra el elemento */
+    }
+
+
+}
+
+@media (min-width:1112px){
+    .last-item {
+        grid-column: span 1; /* Hace que ocupe las 3 columnas */
+        justify-self: center; /* Centra el elemento */
+    }
+
+    article{
+     
+        width: 18em;
+        height: 12em;
+        margin-bottom: 2em;
+    }
 }
