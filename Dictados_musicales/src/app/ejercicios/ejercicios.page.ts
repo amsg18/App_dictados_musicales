@@ -20,13 +20,14 @@ export class EjerciciosPage implements OnInit {
     this.audio_button.src='./assets/audios/beep.wav';
   }
 
+  //DIRECCIONES A OTRAS PANTALLAS
   goHome(){
     this.audio_button.play();
     this.router.navigate(['/home'])
   }
   goSelecDictado(dictadosId: number){
     this.audio_button.play();
-    this.router.navigate(['/seleccion'], { queryParams: {id: dictadosId}});
+    this.router.navigate(['/seleccion'], { queryParams: {id: dictadosId}}); //pasamos el tipo de ejercicio seleccionado
   }
   goDictados2(){
     this.audio_button.play();

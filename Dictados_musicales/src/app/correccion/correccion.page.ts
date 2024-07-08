@@ -22,8 +22,8 @@ export class CorreccionPage implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.imageId = +params['imageId'];
-      this.tipo_ejercicio = +params['tipo_ejercicio'];
+      this.imageId = +params['imageId'];        //Segun el ejercicio seleccionado se carga la solucion correspondiente
+      this.tipo_ejercicio = +params['tipo_ejercicio'];  //el tipo de ejercicios seleccionado para cuando se quiera ver mas ejercicios
       this.drawBackground();
     })
 
@@ -38,11 +38,7 @@ export class CorreccionPage implements OnInit {
 
   }
 
-  //ngOnChanges(changes:SimpleChanges) {
-  //  if (changes['imageId']){
-  //    this.drawBackground();
-  //  }
-  //}
+
   setupCanvas(){
     this.pentagramCanvasElement.width = window.innerWidth;
     this.pentagramCanvasElement.height = window.innerHeight;
@@ -100,7 +96,7 @@ export class CorreccionPage implements OnInit {
 
   }
 
-
+//Opcion para descargar la imagen en caso de quererla
   downloadCorreccion(){
     this.audio_button.play();
     const canvas = this.pentagramCanvasElement;

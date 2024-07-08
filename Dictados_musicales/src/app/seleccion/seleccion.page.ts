@@ -21,7 +21,7 @@ export class SeleccionPage implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.dictadosId = +params['id']; // + es para convertir en número
+      this.dictadosId = +params['id']; // + es para convertir en número, recogemos el id del tipo de ejercicios
       this.updateTitlesIfReady();
     })
 
@@ -44,6 +44,7 @@ export class SeleccionPage implements OnInit {
   }
 
   changeTitle(){
+    //Cambiara el titulo segun el tipo de ejercicio que se haya elegido
     switch (this.dictadosId) {
       case 3:
         this.mainTitle.nativeElement.textContent = '3 Notas';
@@ -72,7 +73,7 @@ export class SeleccionPage implements OnInit {
     }
   }
 
-
+ //DIRECCIONES A OTRAS PANTALLAS
   goHome(){
     this.audio_button.play();
     this.router.navigate(['/home']);

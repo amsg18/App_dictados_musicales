@@ -1,4 +1,5 @@
 
+<!--MODALES-->
 <div id="myModal" class="modal">
   <div class="modal-content">
     <section class="modal-title">
@@ -54,6 +55,7 @@
       <i class="icon-home efecto " (click)="openModalHome()"></i>
     </section>
   </header>
+  <!--Canvas de dibujado y canvas con la imagen del pentgrama-->
   <section class="canvas-section">  
     <article class="icon-column">
       <div class="lapiz">
@@ -65,10 +67,13 @@
       </article>
     <article class="canvas-container">
       <canvas #pentagramCanvas id="pentagramCanvas"></canvas>
-      <canvas #drawingCanvas id="drawingCanvas"  (mousedown)="handleStart($event)"
-      (mousemove)="handleMove($event)"
-      (mouseup)="handleEnd($event)"
-       (touchstart)="handleStart($event)"  (touchmove)="handleMove($event)" (touchend)="handleEnd($event)"></canvas>
+      <canvas #drawingCanvas id="drawingCanvas"
+        (mousedown)="handleStart($event)"
+        (mousemove)="handleMove($event)"
+        (mouseup)="handleEnd($event)"
+        (touchstart)="handleStart($event)" 
+        (touchmove)="handleMove($event)"
+        (touchend)="handleEnd($event)"></canvas>
     </article>
   </section>
   

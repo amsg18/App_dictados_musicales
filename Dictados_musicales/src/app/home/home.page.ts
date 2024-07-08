@@ -9,15 +9,17 @@ import { Router } from '@angular/router';
 export class HomePage {
 
   @ViewChild('audioButton') audioButtonRef!: ElementRef;
-  audio_button!: HTMLAudioElement;
+  audio_button!: HTMLAudioElement; //audio para botones
 
-  constructor(private router:Router) { }
+  constructor(private router:Router) { } //Se utiliza para dirigir a otras pantallas
 
-  ngOnInit(){}
+  ngOnInit(){
+
+  }
  
 ngAfterViewInit(){
-  this.audio_button = this.audioButtonRef.nativeElement;
-  this.audio_button.src='./assets/audios/beep.wav';
+  this.audio_button = this.audioButtonRef.nativeElement; 
+  this.audio_button.src='./assets/audios/beep.wav'; 
 }
 
   goEjercicios(){

@@ -1,29 +1,25 @@
 
 
 ion-content {
-  --background: linear-gradient(135deg, var(--azul-oscuro),var(--azul)); /* Degradado lineal aplicado directamente */
+  --background: linear-gradient(135deg, var(--azul-oscuro),var(--azul)); // Degradado lineal aplicado directamente 
   height: 100%; 
   display: flex; 
   align-items: center; 
   justify-content: center; 
 }
 ion-button {
-  --background: var(--blanco); /* Fondo blanco */
-  --color: var(--negro); /* Texto negro */
+  --background: var(--blanco); 
+  --color: var(--negro); 
   min-height: 120px;
   min-width: 100px;
-  --border-radius: 35px; /* Bordes redondeados, opcional */
-  padding: 49px 20px; /* Relleno, opcional */
-  font-size: 49px; /* Tamaño del texto, opcional */
-  font-weight: bold; /* Peso del texto, opcional */
+  --border-radius: 35px; 
+  padding: 49px 20px; 
+  font-size: 49px;
+  font-weight: bold; 
 }
+
 ion-button:active{
-  transform: scale(0.9);    /* Escala al hacer clic */
-}
-.logo-font{
-  margin-top: 50px;
-
-
+  transform: scale(0.9);    //Escalar al hacer click se gestiona con el active
 }
 footer{
   margin-top: 2em;
@@ -37,18 +33,23 @@ footer{
   text-align: center;
 }
 
+//Segun la clase
+.logo-font{
+  margin-top: 50px;
+}
+
 .logo-container{
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px; /* Espacio entre las imágenes y el texto */
+  gap: 10px; // Espacio entre las imágenes y el texto 
   position: relative;
 }
 
 .logo-img1 {
   width: 120px; 
   height: 180px;
-  transform: translateY(50px) rotate(-15deg);
+  transform: translateY(50px) rotate(-15deg); //Colocar la imagen en un punto concreto y rotar
 
 }
 .logo-img2{
@@ -58,23 +59,17 @@ footer{
 }
 
 .left-img {
-  margin-right: 10px; /* Espacio a la derecha de la imagen izquierda */
+  margin-right: 10px; 
 }
 
 .right-img {
-  margin-left: 10px; /* Espacio a la izquierda de la imagen derecha */
+  margin-left: 10px; 
   margin-bottom: 10px;
 }
 
+//MEDIA QUERIES
+//Condicion especial para pantallas mas pequenyas de 443px de alto y 649px de ancho
 @media (max-height:443px) and (max-width: 649px){
-
-  .logo-container{
-    transform: scale(0.5) translateY(-200px);
-    padding-top: -2em;
-    padding-bottom: -5em;
-    
-  }
-
   footer{
     display: none;
     
@@ -87,8 +82,36 @@ footer{
     transform: scale(0.2) ;
 
   }
+  .logo-container{
+    transform: scale(0.5) translateY(-200px);
+    padding-top: -2em;
+    padding-bottom: -5em;
+    
+  }
   .button{
     transform: scale(0.8) translateY(-150px);
     margin:0;
   }
+}
+@media (min-height:700px){
+  ion-button{
+    margin-top: 2vh;
+    //height:20vh;
+    font-size: 10vh;
+    padding-top:2vh;
+    padding-bottom: 2vh;
+  }
+  .logo-container{
+    //transform: scale(0.5) translateY(-200px);
+    padding-top: 5vh;
+    padding-bottom: 15vh;
+    
+  }
+  h1{
+    font-size: 15vh;
+  }
+  p{
+    font-size: 3vh;
+  }
+
 }

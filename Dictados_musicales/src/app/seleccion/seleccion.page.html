@@ -7,11 +7,13 @@
       <i class="icon-home efecto" (click)="goHome()"></i>
     </section>
     <section class="title-section">
-      <h1 class="title-font" #mainTitle id="mainTitle">Dictados con 3 notas</h1>
+      <!--Esto cambiara con el typescript segun el tipo de ejercicio seleccionado-->
+      <h1 class="title-font" #mainTitle id="mainTitle">Dictados con 3 notas</h1> 
       <h2 class="title-font" #subtitle id="subtitle">Do mi sol</h2>
     </section>
   </header>
   
+  <!--Dictados a elegir-->
   <section class="body-font grid">
     <article class="boton" (click)="goDictado(1)">
         <p>1</p>

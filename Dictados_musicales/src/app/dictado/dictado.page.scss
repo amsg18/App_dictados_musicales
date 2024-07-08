@@ -204,6 +204,7 @@ article {
   padding-bottom:0.5em; 
   margin-left: 1.5em;
   margin-right: 1.5em;
+  cursor: pointer;
 
 }
 .modal-title{
@@ -239,7 +240,7 @@ article {
 
 @media (min-width:901px){
   canvas{
-    width: 800px;
+    width: 80vw;
   }
 }
 
@@ -299,11 +300,10 @@ article {
 
   @media (min-height:520px){
     canvas{
-      height: 390px;
-      .modal-button{
-        margin-top:-85px;
-      }
-    }
+      height: 60vh;
+    }  
+
+    
 
   }
 
@@ -333,7 +333,11 @@ article {
       font-size: 45px;
     }
     .modal-button{
-      margin-top:-85px;
+     // margin-top:-85px;
+    }
+    .modal-content{
+      height: 400px;
+
     }
   }
   @media (max-height:437px){
@@ -364,6 +368,6 @@ article {
       font-size: 25px;
     }
     .modal-button{
-      margin-top:-50px;
+      margin-top:-40px;
     }
   }

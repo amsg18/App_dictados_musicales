@@ -11,10 +11,10 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class DictadoPage implements OnInit {
 
-  @ViewChild('drawingCanvas') canvas: any;
-  @ViewChild('pentagramCanvas') pentagramCanvas: any;
-  @ViewChild('audioElement') audioElemntRef!: ElementRef;
-  @ViewChild('audioButton') audioButtonRef!: ElementRef;
+  @ViewChild('drawingCanvas') canvas: any;                  //canvas en el que se dibuja
+  @ViewChild('pentagramCanvas') pentagramCanvas: any;       //canvas con la imagen
+  @ViewChild('audioElement') audioElemntRef!: ElementRef;   //audio del dictado
+  @ViewChild('audioButton') audioButtonRef!: ElementRef;    //audio de pulsar boton
 
   audio!: HTMLAudioElement;
   audio_button!: HTMLAudioElement;
@@ -26,12 +26,11 @@ export class DictadoPage implements OnInit {
   numeroId!: number;
 
   combinedImageUrl: string = '';
-  lastX: number = -1;
-  lastY: number = -1;
-  currentColour: string ='black'; //no se utiliza de momento
-  sizeBrush:number = 2;           // no se utiliza de momento
-  borrador:boolean = false;
-  currentTool = 'brush';
+  lastX: number = -1; //ultima posicion X, se inicializa con -1 porque no se comienza a dibujar
+  lastY: number = -1;//ultima posicion Y, se inicializa con -1 porque no se comienza a dibujar
+  currentColour: string ='black'; //para cambiar el color del pincel
+  sizeBrush:number = 2;           // para cambiar el tamaño del pincel
+  borrador:boolean = false;       //se distingue entre borrador o pincel
 
   constructor(private router:Router, private route:ActivatedRoute) { 
 
@@ -49,13 +48,11 @@ export class DictadoPage implements OnInit {
 
     this.pentagramCanvasElement = this.pentagramCanvas.nativeElement;
 
-
-
-
-
     this.audio = this.audioElemntRef.nativeElement;
     this.audio_button = this.audioButtonRef.nativeElement;
     this.audio_button.src='./assets/audios/beep.wav';
+
+    //SELECCION DEL DICTADO SEGUN EL TIPO DE EJERCICIO Y EL NUMERO ELEGIDO, solo se cuentan con 6 dictados diferentes para realizar las pruebas
     switch (this.dictadosId) {
       case 3 :
         this.audio.src = './assets/audios/Dictado1.wav'; 
@@ -128,24 +125,20 @@ export class DictadoPage implements OnInit {
         break;
     }
 
-   
     this.audio.load();
     this.setupCanvas();
-
-
   }
 
 
   setupCanvas() {
     const canvas = document.getElementById('pentagramCanvas') as HTMLCanvasElement;
 
-    if(canvas){
-      
+    if(canvas){ 
       const style = window.getComputedStyle(canvas);
       const visualWidth = parseFloat(style.width);
       const visualHeight = parseFloat(style.height);
-      this.canvasElement.width = visualWidth;
-      this.canvasElement.height = visualHeight;
+      this.canvasElement.width = visualWidth; //coge el ancho definido en el css
+      this.canvasElement.height = visualHeight; //coge la altura definida en el css
   
     }else{
       this.canvasElement.width = 600;
@@ -162,20 +155,7 @@ export class DictadoPage implements OnInit {
   }
 
   drawBackground(){
-   // let ctx = this.pentagramCanvasElement.getContext('2d');
-   // if (ctx) {
-   //   let pentagram = new Image();
-   //   pentagram.src = "./assets/pentagrama_recortado.png";
-//
-   //   pentagram.onload = () => {
-   //     if (ctx)
-   //       ctx.drawImage(pentagram, 0, 0);
-   //   }
-   // 
-   //   ctx.fillRect(0, 0, this.pentagramCanvasElement.width, this.pentagramCanvasElement.height);
-   // } else {
-   //   console.error('Contexto del canvas de fondo no disponible');
-   // }
+
    const ctx = this.pentagramCanvasElement.getContext('2d');
    if (!ctx) {
        console.error('No se pudo obtener el contexto 2D del canvas de pentagrama');
@@ -204,14 +184,10 @@ export class DictadoPage implements OnInit {
 
   }
 
-  handleStart(ev:Event){
+  handleStart(ev:Event){ //se recibe un Event para hacerlo adaptable a ordenadores y se distingue con el ev instance of
   
     //Se obtiene la posición en x e y de donde se ha pulsado para dibujar
     let rect = this.canvasElement.getBoundingClientRect();
-  // let offsetX = rect.left + window.scrollX - document.documentElement.clientLeft;
-  // let offsetY = rect.top + window.scrollY - document.documentElement.clientTop;
-  // this.lastX = ev.touches[0].pageX - offsetX;
-  // this.lastY = ev.touches[0].pageY - offsetY;
   if(ev instanceof TouchEvent){
     this.lastX = ev.touches[0]. clientX - rect.left;
     this.lastY = ev.touches[0]. clientY - rect.top;
@@ -219,17 +195,8 @@ export class DictadoPage implements OnInit {
     this.lastX = ev.clientX - rect.left;
     this.lastY = ev.clientY - rect.top;
   }
-    
 
-
-//  if (this.lastX < 92 || this.lastX > 720 ||
-//    this.lastY < 100 || this.lastY > 500) {
-//  this.lastX = -1;
-//  this.lastY = -1; // Esto indica que el punto inicial está fuera de los límites
-//}
-
-
-  }
+}
 
 
   handleMove(ev:Event){
@@ -244,11 +211,14 @@ export class DictadoPage implements OnInit {
       ctx.lineWidth=this.sizeBrush;
       ctx.lineJoin='round';
     }
+
+    //calculo de la posicion donde se ha tocado del canvas
     let rect = this.canvasElement.getBoundingClientRect();
-    let offsetX = rect.left + window.scrollX - document.documentElement.clientLeft;
+    let offsetX = rect.left + window.scrollX - document.documentElement.clientLeft; 
     let offsetY = rect.top + window.scrollY - document.documentElement.clientTop;
    
    let currentX:number = 0 , currentY: number = 0;
+
     if(ev instanceof TouchEvent){
       currentX = ev.touches[0].pageX - offsetX;
       currentY = ev.touches[0].pageY - offsetY;
@@ -257,29 +227,21 @@ export class DictadoPage implements OnInit {
       currentY = ev.clientY - rect.top;
     }
 
-
-    //console.log(currentX, currentY);
-  // const currentX = ev.touches[0].clientX - rect.left;
-   //const currentY = ev.touches[0].clientY - rect.top;
-
     if(ctx){
       if(this.borrador){
         ctx.clearRect(currentX - 10, currentY - 10, 20, 20); 
       }else{
+        //traza el camino del dibujo
         ctx.beginPath();
         ctx.moveTo(this.lastX, this.lastY);
         ctx.lineTo(currentX,currentY);
         ctx.closePath();
-      
+        //dibuja
         ctx.stroke();
-
+        //guarda la ultima posicion
         this.lastX = currentX;
         this.lastY = currentY;
       }
-     
-
-      
-
     }else console.log("Ctx is null");
   }
 
@@ -315,6 +277,7 @@ export class DictadoPage implements OnInit {
     }
   }
 
+  //Cambiar de pantalla
   goHome(){
     this.pauseAudio();
     this.clearCanvas();
@@ -337,6 +300,7 @@ export class DictadoPage implements OnInit {
   }
 
 
+  //Combinar canvas para pasar al Api en el momento de su uso
   combineCanvases() {
     // Crear un canvas nuevo en memoria para combinar la imagen de los dos canvas
     let combinedCanvas = document.createElement('canvas');
@@ -354,7 +318,8 @@ export class DictadoPage implements OnInit {
 
     this.combinedImageUrl = combinedCanvas.toDataURL('image/png');
   }
- 
+
+  //descargar la imagen que se combina para hacer pruebas
   downloadImage(){
     this.combineCanvases();
     let link = document.createElement('a');
@@ -363,23 +328,14 @@ export class DictadoPage implements OnInit {
     link.click();
   }
 
- // playAudio(){
- //   let audio = new Audio('./assets/audios/wheel.wav');
- //   audio.oncanplaythrough = () => {
- //     audio.play();
- //   };
- //   audio.onerror = (err) => {
- //     console.error('Error al cargar/reproducir el audio:', err);
- //   };
- //   audio.load();
- // }
-  
+//Eventos de audio de dictado
 playAudio(){
   if(this.audio){
     this.audio.play();
   }
 }
 
+//no se utiliza
  restartAudio() {
    if (this.audio) {
      this.audio.currentTime = 0;
@@ -392,6 +348,7 @@ playAudio(){
     }
   }
 
+  //Funciones para los modales
   openModalHome() {
     const modal = document.getElementById('myModal');
     if (modal) {
