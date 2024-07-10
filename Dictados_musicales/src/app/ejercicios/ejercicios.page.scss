@@ -33,11 +33,12 @@ header{
 h1{
     font-size: 69px;
 }
-i {
+span {
     color:var(--azul-oscuro);
     font-size: 40px;
     cursor: pointer;
 }
+
 //Estilo por clase
 .efecto:active{
     transform: scale(0.9);
