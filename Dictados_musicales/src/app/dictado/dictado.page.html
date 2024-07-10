@@ -1,27 +1,93 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Dictado</ion-title>
-  </ion-toolbar>
-</ion-header>
+
+<!--MODALES-->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <section class="modal-title">
+      <p class="title-font coment1">Si sales perderá el progreso realizado</p>
+      <h1 class="title-font coment2">¿Deseas salir?</h1>
+    </section>
+    <section class="opciones-salir">
+      <div class="modal-button" (click)="closeModalHome()">
+        <i class="icon-cancel cruz" ></i>
+      </div>
+      <div class="modal-button" (click)="goHome()">
+        <i class="icon-ok check"></i>
+      </div>
+    </section>  
+  </div>
+</div>
+<div id="myModalDictados" class="modal">
+  <div class="modal-content">
+    <section class="modal-title">
+      <p class="title-font coment1">Si sales perderá el progreso realizado</p>
+      <h1 class="title-font coment2">¿Deseas salir?</h1>
+    </section>
+    <section class="opciones-salir">
+      <div class="modal-button" (click)="closeModalDictados()">
+        <i class="icon-cancel cruz" ></i>
+      </div>
+      <div class="modal-button" (click)="goDictados()">
+        <i class="icon-ok check"></i>
+      </div>
+    </section>  
+  </div>
+</div>
+<div id="myModalCorreccion" class="modal">
+  <div class="modal-content">
+    <section class="modal-title modal-correccion">
+      <h1 class="title-font coment2">¿Deseas finalizar la tarea?</h1>
+    </section>
+    <section class="opciones-salir">
+      <div class="modal-button" (click)="closeModalCorreccion()">
+        <i class="icon-cancel cruz" ></i>
+      </div>
+      <div class="modal-button" (click)="goCorreccion()">
+        <i class="icon-ok check"></i>
+      </div>
+    </section>  
+  </div>
+</div>
+
 
 <ion-content [fullscreen]="true" [forceOverscroll]="false">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Dictado</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <canvas #pentagramCanvas id="pentagramCanvas"></canvas>
-  <canvas #drawingCanvas id="drawingCanvas"  (touchstart)="handleStart($event)"  (touchmove)="handleMove($event)" (touchend)="handleEnd($event)"></canvas>
- 
-  <ion-button (click)=" changeToBrush()" (click)="changeSize(1)">Lápiz</ion-button>
-  <ion-button (click)=" changeToEraser()" (click)="changeSize(4)">Borrador</ion-button>
-  <ion-button (click)="goHome();">Inicio</ion-button>
-  <ion-button (click)="goMenu();">Atrás</ion-button>
-
-  <ion-button (click)="playAudio();">Play</ion-button>
-
-  <ion-button (click)="downloadImage();">Capturar Imagen</ion-button>
+  <header>
+    <section class="icon-section efecto">
+      <i class="icon-home efecto " (click)="openModalHome()"></i>
+    </section>
+  </header>
+  <!--Canvas de dibujado y canvas con la imagen del pentgrama-->
+  <section class="canvas-section">  
+    <article class="icon-column">
+      <div class="lapiz">
+        <i class = "icon-pencil cuadro-boton " (click)="changeToBrush()" [ngClass]="{'selected-tool': borrador === false}"></i>
+      </div>
+      <div class="efecto">
+        <i class = "icon-eraser cuadro-boton " (click)=" changeToEraser()" [ngClass]="{'selected-tool': borrador === true}" ></i>
+      </div>
+      </article>
+    <article class="canvas-container">
+      <canvas #pentagramCanvas id="pentagramCanvas"></canvas>
+      <canvas #drawingCanvas id="drawingCanvas"
+        (mousedown)="handleStart($event)"
+        (mousemove)="handleMove($event)"
+        (mouseup)="handleEnd($event)"
+        (touchstart)="handleStart($event)" 
+        (touchmove)="handleMove($event)"
+        (touchend)="handleEnd($event)"></canvas>
+    </article>
+  </section>
+  
 
   <audio #audioElement></audio>
+  <audio #audioButton></audio>
+  <footer>
+    <i class="icon-left-open " (click)="openModalDictados()"></i>
+    <section class="efecto play">
+      <i class="icon-play efecto" (click)="playAudio()"></i>
+    </section>
+    <section class="efecto">
+      <i class="icon-ok cuadro-boton  " id="ok" (click)="openModalCorreccion()"></i>
+    </section>
+  </footer>
+
 </ion-content>

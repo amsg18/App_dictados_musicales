@@ -1,0 +1,114 @@
+
+ion-content{
+    --background: var(--blanco);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+   
+}
+
+article{
+    background: linear-gradient(135deg, var(--azul-oscuro),var(--azul));
+    width: 18em;
+    height: 8em;
+    color: var(--blanco);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; // Centrar verticalmente
+    align-items: center; // Centra horizontalmente
+    text-align: center; 
+    cursor: pointer; //Para que salga la mano en el cursor al pasar por encima de estos
+    margin-bottom: 1em;
+}
+
+article:active{
+    transform: scale(0.9);    // Escala al hacer clic
+
+}
+header{
+    display: flex;
+    justify-content: flex-start;
+}
+h1{
+    font-size: 69px;
+}
+i {
+    color:var(--azul-oscuro);
+    font-size: 40px;
+    cursor: pointer;
+}
+//Estilo por clase
+.efecto:active{
+    transform: scale(0.9);
+  
+}
+.num-notas{
+    font-size: 40px;
+}
+.notas{
+    font-size: 30px;
+}
+.title-section{
+    flex-grow: 1; //Para que ocupe el espacio restante
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.icon-section{
+    padding: 10px;
+}
+.grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(370px, 1fr)); //se crea un grid donde el tamaño es de 370px por elemento, se irán haciendo columnas con eso
+    gap: 1px;
+    justify-items: center;
+    align-items: center;
+}
+
+
+//MEDIA QUERIES
+@media (min-width:741px){
+    .last-item {
+        grid-column: span 2; // Hace que ocupe las 2 columnas, para centrar el ultimo elemento cuando se agrupan en dos columnas
+        justify-self: center; 
+    }
+}
+
+@media (min-width:1112px) and (max-width:1482px){
+    .last-item {
+        grid-column: span 1; 
+        justify-self: center;
+    }
+
+    article{
+        width: 18em;
+        height: 12em;
+        margin-bottom: 2em;
+    }
+}
+@media (min-width:1483px){
+    article {
+        width:20vw;
+        height: 30vh;
+        margin-bottom: 3em;
+        margin-left: 2m;
+    }
+    h1{
+        font-size: 10vh;
+    }
+    .grid{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr)); //se crea un grid donde el tamaño es de 370px por elemento, se irán haciendo columnas con eso
+        gap: 1px;
+        justify-items: center;
+        align-items: center;
+    }
+    .last-item {
+        grid-column: span 1; 
+        justify-self: center;
+    }
+    
+}

@@ -1,0 +1,116 @@
+
+ion-content{
+    --background: var(--blanco);
+    display:block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+   
+}
+header{
+    display: flex;
+    justify-content: flex-start;
+}
+
+h1, h2{
+    font-size: 40px; 
+}
+h2{
+    margin-top:-15px;
+}
+
+article{
+    background: var(--amarillo);
+    width: 12em;
+    height: 5.8em;
+    color: var(--negro);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    text-align: center; 
+    cursor: pointer;
+    border: 5px solid;
+    border-color: var(--azul-oscuro);
+    border-radius: 2em;
+    margin-bottom: 1.50em;
+
+}
+article > span{
+    font-size: 40px;
+}
+article > p{
+    font-size: 40px;
+}
+
+i {
+    color:var(--azul-oscuro);
+    font-size: 40px;
+    cursor: pointer;
+}
+
+footer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+}
+
+//Estilo por clase
+.grid{
+    display: grid;
+    //grid-template-columns: repeat(auto-fill, minmax(calc((100% - 40px) / 3), 1fr)); 
+    gap: 1px;
+    justify-items: center;
+    align-items: center;
+   
+}
+
+.title-section{
+    flex-grow: 1; //Para que ocupe el espacio restante
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.icon-section{
+    padding: 10px;
+}
+.boton:active{
+    transform: scale(0.9);    
+
+}
+.efecto:active{
+    transform: scale(0.9);
+  
+}
+
+//MEDIA QUERIES
+//En este caso se cambia solo el grid
+@media (min-width:681px){
+    .grid{
+        grid-template-columns: repeat(3,1fr);
+      
+    }
+    h1, h2{
+        font-size: 10vh;
+    }
+
+    article{
+        height: 15vh;
+        width: 25vh;
+    }
+}
+
+@media (min-width:477px) and (max-width: 680px){
+    .grid{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media (max-width:476px){
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

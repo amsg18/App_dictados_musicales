@@ -1,0 +1,26 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2024 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="home" unicode="&#xe800;" d="M521 819q322-279 500-429 20-16 20-40 0-21-15-37t-36-15l-105 0 0-364q0-21-15-37t-36-16l-156 0q-22 0-37 16t-16 37l0 208-209 0 0-208q0-21-15-37t-36-16l-156 0q-21 0-37 16t-16 37l0 364-103 0q-22 0-37 15t-16 37 19 40z" horiz-adv-x="1041" />
+
+<glyph glyph-name="left-open" unicode="&#xe801;" d="M481 684q32-31 32-74t-32-74l-186-186 186-186q32-31 32-74t-32-74-73-31-74 31l-334 334 334 334q30 31 74 31t73-31z" horiz-adv-x="513" />
+
+<glyph glyph-name="pencil" unicode="&#xe802;" d="M0-143l68 343 274-273z m137 392l422 422 259-260-421-422z m531 494q2 39 31 69t69 31 66-25l131-131q25-26 24-66t-30-69-69-30-66 24l-131 131q-27 27-25 66z" horiz-adv-x="989" />
+
+<glyph glyph-name="play" unicode="&#xe803;" d="M18 797l670-446-670-448 0 894z" horiz-adv-x="705" />
+
+<glyph glyph-name="ok" unicode="&#xe804;" d="M0 339q0-35 24-60l246-239q24-25 60-25 36 0 60 25l505 495q25 24 25 59t-25 58q-25 25-60 25t-60-25l-445-435-185 181q-25 24-60 24t-61-24q-24-24-24-59z" horiz-adv-x="920.4" />
+
+<glyph glyph-name="cancel" unicode="&#xe806;" d="M654 349l346-346-154-154-346 346-346-346-154 154 346 346-346 346 154 154 346-346 346 346 154-154z" horiz-adv-x="1000" />
+
+<glyph glyph-name="download" unicode="&#xf02e;" d="M0 84v73q0 33 24 56t57 24 56-24 24-56v-73q0-17 12-29t30-13h531q18 0 30 13t12 29v73q0 33 24 56t56 24 57-24 24-56v-73q0-84-59-143t-144-60h-531q-84 0-144 60t-59 143z m155 359q0 33 24 57 23 23 56 23t57-23l105-106v344q0 33 24 57t56 23 57-23 24-57v-344l110 110q24 24 57 24t56-24q24-23 24-56t-24-57l-247-247q-24-25-57-25-32 0-56 25l-242 242q-24 24-24 57z" horiz-adv-x="937.5" />
+
+<glyph glyph-name="eraser" unicode="&#xf12d;" d="M500 64l188 215h-429l-188-215h429z m565 601q9-19 6-40t-17-36l-500-572q-22-24-54-24h-429q-21 0-38 11t-27 31q-8 19-5 40t17 36l500 572q21 24 53 24h429q21 0 39-11t26-31z" horiz-adv-x="1071.4" />
+</font>
+</defs>
+</svg>
