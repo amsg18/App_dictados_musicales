@@ -1,5 +1,7 @@
 
-
+ion-header{
+  display:none;
+}
 ion-content {
   --background: linear-gradient(135deg, var(--azul-oscuro),var(--azul)); // Degradado lineal aplicado directamente 
   height: 100%; 
@@ -47,12 +49,14 @@ footer{
 }
 
 .logo-img1 {
+  display: block;
   width: 120px; 
   height: 180px;
   transform: translateY(50px) rotate(-15deg); //Colocar la imagen en un punto concreto y rotar
 
 }
 .logo-img2{
+  display: block;
   width: 100px; 
   height: 100px;
   transform: translateY(170px)

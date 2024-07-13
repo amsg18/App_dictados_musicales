@@ -1,6 +1,9 @@
 ion-content{
     --background: var(--amarillo);
-    padding: 10px;
+    //padding: 10px;
+   // max-height: 100%;
+   // max-width: 100%;
+    //overflow: hidden;
   }
   
   canvas {
@@ -164,29 +167,19 @@ ion-content{
       height: 5em;
     }
   }
-  
-  @media (min-height:437px) and (max-height:548px){
+  @media (max-height:548px){
     canvas{
-      height: 300px;
+      height: 50vh;
     }
-    i{
-      font-size: 30px;
+    span{
+      font-size: 4.5vh;
     }
     footer{
       padding-bottom: -10px;
       padding-top:-50px ;
     }
-  }
-  @media (max-height:437px){
-    canvas{
-      height: 200px;
-    }
-    i{
-      font-size: 20px;
-    }
-    footer{
-      padding-bottom: -10px;
-      padding-top:-50px ;
+    .cuadro-boton{
+      font-size: 6vh;
     }
   }
   

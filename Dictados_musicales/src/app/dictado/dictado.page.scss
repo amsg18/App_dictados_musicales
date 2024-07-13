@@ -309,10 +309,10 @@ article {
 
   @media (min-height:437px) and (max-height:520px){
     canvas{
-      height: 300px;
+      height: 60vh;
     }
-    i{
-      font-size: 30px;
+    span{
+      font-size: 6vh;
     }
     footer{
       padding-bottom: -10px;
@@ -332,9 +332,7 @@ article {
     .coment2{
       font-size: 45px;
     }
-    .modal-button{
-     // margin-top:-85px;
-    }
+
     .modal-content{
       height: 400px;
 
@@ -342,11 +340,11 @@ article {
   }
   @media (max-height:437px){
     canvas{
-      height: 200px;
+      height: 60vh;
       //width: 250px;
     }
-    i{
-      font-size: 20px;
+    span{
+      font-size: 6vh;
     }
     footer{
       padding-bottom: -10px;

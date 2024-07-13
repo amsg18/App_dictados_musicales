@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CorreccionPage implements OnInit {
 
-  @ViewChild('pentagramCanvas') pentagramCanvas: any;
+  @ViewChild('pentagramCanvas') pentagramCanvas!: any;
   @ViewChild('audioButton') audioButtonRef!: ElementRef;
 
   constructor(private router:Router, private route:ActivatedRoute) { }
@@ -24,7 +24,7 @@ export class CorreccionPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.imageId = +params['imageId'];        //Segun el ejercicio seleccionado se carga la solucion correspondiente
       this.tipo_ejercicio = +params['tipo_ejercicio'];  //el tipo de ejercicios seleccionado para cuando se quiera ver mas ejercicios
-      this.drawBackground();
+      //this.drawBackground();
     })
 
 
@@ -36,6 +36,11 @@ export class CorreccionPage implements OnInit {
     this.audio_button = this.audioButtonRef.nativeElement;
     this.audio_button.src='./assets/audios/beep.wav';
 
+    this.route.queryParams.subscribe(params => {
+      this.imageId = +params['imageId'];        //Segun el ejercicio seleccionado se carga la solucion correspondiente
+      this.tipo_ejercicio = +params['tipo_ejercicio'];  //el tipo de ejercicios seleccionado para cuando se quiera ver mas ejercicios
+      this.drawBackground();
+    })
   }
 
 

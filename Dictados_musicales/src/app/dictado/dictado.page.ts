@@ -55,70 +55,70 @@ export class DictadoPage implements OnInit {
     //SELECCION DEL DICTADO SEGUN EL TIPO DE EJERCICIO Y EL NUMERO ELEGIDO, solo se cuentan con 6 dictados diferentes para realizar las pruebas
     switch (this.dictadosId) {
       case 3 :
-        this.audio.src = './assets/audios/Dictado1.wav'; 
+        this.audio.src = './assets/audios/dictados/Dictado1.wav'; 
         this.numeroId = 1;
         break;
       case 4 :
         if( this.articleID % 2 == 0 ){
-          this.audio.src = './assets/audios/Dictado6.wav'
+          this.audio.src = './assets/audios/dictados/Dictado6.wav'
           this.numeroId = 6;
         } else {
-          this.audio.src = './assets/audios/Dictado2.wav';
+          this.audio.src = './assets/audios/dictados/Dictado2.wav';
           this.numeroId = 2;
         }
         break;
       case 5 :
           if( this.articleID == 1 || this.articleID == 4 || this.articleID == 7){
-            this.audio.src = './assets/audios/Dictado1.wav'; 
+            this.audio.src = './assets/audios/dictados/Dictado1.wav'; 
             this.numeroId = 1;
           }else if(this.articleID == 2 || this.articleID == 5 || this.articleID == 8){
-            this.audio.src = './assets/audios/Dictado2.wav'; 
+            this.audio.src = './assets/audios/dictados/Dictado2.wav'; 
             this.numeroId = 2;
           }else{
-            this.audio.src = './assets/audios/Dictado6.wav';
+            this.audio.src = './assets/audios/dictados/Dictado6.wav';
             this.numeroId = 6;
           }  
         break;
       case 6:
         if( this.articleID == 1 || this.articleID == 4 || this.articleID == 7){
-          this.audio.src = './assets/audios/Dictado3.wav'; 
+          this.audio.src = './assets/audios/dictados/Dictado3.wav'; 
           this.numeroId = 3;
         }else if(this.articleID == 2 || this.articleID == 5 || this.articleID == 8){
-          this.audio.src = './assets/audios/Dictado5.wav'; 
+          this.audio.src = './assets/audios/dictados/Dictado5.wav'; 
           this.numeroId = 5;
         }else{
-          this.audio.src = './assets/audios/Dictado4.wav';
+          this.audio.src = './assets/audios/dictados/Dictado4.wav';
           this.numeroId = 4;
         } 
         break;
       case 7:
         switch (this.articleID) {
           case 1:
-            this.audio.src = './assets/audios/Dictado1.wav'; 
+            this.audio.src = './assets/audios/dictados/Dictado1.wav'; 
             this.numeroId = 1;
             break;
           case 2:
-            this.audio.src = './assets/audios/Dictado2.wav';
+            this.audio.src = './assets/audios/dictados/Dictado2.wav';
             this.numeroId = 2;
             break;
           case 3:
-            this.audio.src = './assets/audios/Dictado3.wav';
+            this.audio.src = './assets/audios/dictados/Dictado3.wav';
             this.numeroId = 3;
             break;
           case 4:
-            this.audio.src = './assets/audios/Dictado4.wav';
+            this.audio.src = './assets/audios/dictados/Dictado4.wav';
             this.numeroId = 4;
           break;
           case 5:
-            this.audio.src = './assets/audios/Dictado5.wav';
+            this.audio.src = './assets/audios/dictados/Dictado5.wav';
             this.numeroId = 5;
           break;
           case 6:
-            this.audio.src = './assets/audios/Dictado6.wav';
+            this.audio.src = './assets/audios/dictados/Dictado6.wav';
             this.numeroId = 6;
           break;
           default:
-            this.audio.src = './assets/audios/Dictado1.wav'; // Audio por defecto
+            this.audio.src = './assets/audios/dictados/Dictado1.wav'; // Audio por defecto
             this.numeroId = 1;
             break;
         }
