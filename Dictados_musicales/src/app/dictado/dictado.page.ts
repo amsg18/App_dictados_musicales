@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {ActivatedRoute} from '@angular/router';
-
-
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 @Component({
   selector: 'app-dictado',
   templateUrl: './dictado.page.html',
@@ -32,7 +32,7 @@ export class DictadoPage implements OnInit {
   sizeBrush:number = 2;           // para cambiar el tamaño del pincel
   borrador:boolean = false;       //se distingue entre borrador o pincel
 
-  constructor(private router:Router, private route:ActivatedRoute) { 
+  constructor(private router:Router, private route:ActivatedRoute, private http: HttpClient) { 
 
   }
 
@@ -322,10 +322,48 @@ export class DictadoPage implements OnInit {
   //descargar la imagen que se combina para hacer pruebas
   downloadImage(){
     this.combineCanvases();
-    let link = document.createElement('a');
-    link.href=this.combinedImageUrl;
-    link.download = 'canvas-image.png';
-    link.click();
+  
+    // URL de la API
+    const apiUrl = 'URL_DE_TU_API';
+
+    // Cuerpo de la solicitud HTTP
+    const body = { image: this.combinedImageUrl };
+
+    // Realiza la petición POST usando HttpClient
+    this.http.post(apiUrl, body)
+      .pipe(
+        catchError(error => {
+          console.error('Error al enviar la imagen', error);
+          throw error; // Propaga el error para manejarlo en algún otro lugar si es necesario
+        })
+      )
+      .subscribe(response => {
+        console.log('Imagen enviada a la petición', response);
+        // Lógica adicional después de recibir la respuesta de la API
+      });
+  
+
+   // const apiUrl = 'URL';
+   // const headers = new HttpHeaders({
+   //   'Content-Type': 'application/json'
+   // });
+   // const body = {
+   //   image: this.combinedImageUrl
+   // };
+//
+   // this.http.post(apiUrl, body, {headers}).subscribe(
+   //   response => {
+   //     console.log('Imagen enviada a la peticion', response);
+   //   },
+   //   error => {
+   //     console.error('Error al enviar la imagen', error);
+   //   }
+   // )
+
+   // let link = document.createElement('a');
+   // link.href=this.combinedImageUrl;
+   // link.download = 'canvas-image.png';
+   // link.click();
   }
 
 //Eventos de audio de dictado

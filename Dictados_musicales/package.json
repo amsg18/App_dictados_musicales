@@ -24,8 +24,10 @@
     "@ionic/angular": "^8.0.0",
     "howler": "^2.2.4",
     "ionicons": "^7.0.0",
+    "midiconvert": "^0.4.7",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "verovio": "^4.2.0",
     "zone.js": "~0.14.2"
   },
   "devDependencies": {
