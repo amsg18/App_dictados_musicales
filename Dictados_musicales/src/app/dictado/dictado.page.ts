@@ -303,7 +303,7 @@ export class DictadoPage implements OnInit {
   goCorreccion(){
     this.pauseAudio();
     this.closeModalCorreccion();
-    this.router.navigate(['/correccion'], {queryParams: {imageId: this.numeroId, tipo_ejercicio: this.dictadosId}})
+    this.router.navigate(['/mock'], {queryParams: {imageId: this.numeroId, tipo_ejercicio: this.dictadosId}})
   }
 
 

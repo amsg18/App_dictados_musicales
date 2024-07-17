@@ -31,6 +31,10 @@ const routes: Routes = [
     path: 'correccion',
     loadChildren: () => import('./correccion/correccion.module').then( m => m.CorreccionPageModule)
   },
+  {
+    path: 'mock',
+    loadChildren: () => import('./mock/mock.module').then( m => m.MockPageModule)
+  },
 ];
 
 @NgModule({

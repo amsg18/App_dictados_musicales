@@ -1,0 +1,25 @@
+<ion-content [fullscreen]="true" [forceOverscroll]="false">
+  <header>
+    <section class="icon-section efecto">
+      <span class="icon-home efecto" (click)="goHome()" alt="icono de casa para volver a la pantalla inicial"></span>
+    </section>
+    <section class="efecto">
+      <span class="icon-download efecto" (click)="downloadCorreccion()" alt="icono para descargar la correccion del dictado"></span>
+    </section>
+  </header>
+  <!--Canvas con la correccion-->
+  <section class="canvas-section">  
+    <article class="canvas-container">
+      <canvas #pentagramCanvas id="pentagramCanvas"></canvas>
+    </article>
+  </section>
+
+  <audio #audioButton></audio>
+
+  <footer>
+    <section>
+      <p class="cuadro-boton title-font efecto" (click)="goDictados()">Más ejercicios</p>
+    </section>
+  </footer>
+
+</ion-content>
