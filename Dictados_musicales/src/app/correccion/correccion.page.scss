@@ -46,7 +46,7 @@ ion-content{
     flex: 1;
     justify-content: center;
     align-items: center;
-    height: 75vh;
+    height: 70vh;
     position:relative;
   }
   .canvas-section {
@@ -159,7 +159,7 @@ ion-content{
 //Condiciones para el alto  
   @media (min-height:549px){
     canvas{
-        height: 70vh;
+        height: 40vh;
     }
     footer{
       padding-bottom: -20px;
@@ -169,7 +169,7 @@ ion-content{
   }
   @media (max-height:548px){
     canvas{
-      height: 50vh;
+      height: 40vh;
     }
     span{
       font-size: 4.5vh;

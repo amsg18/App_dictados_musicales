@@ -42,6 +42,7 @@ export class DictadoPage implements OnInit {
       this.articleID = +params['id']; // + es para convertir en número
       this.dictadosId = +params['dictadosId'];
     })
+
    }
   ngAfterViewInit(){
     this.canvasElement = this.canvas.nativeElement;
@@ -127,9 +128,13 @@ export class DictadoPage implements OnInit {
 
     this.audio.load();
     this.setupCanvas();
+    this.openModalInicio();
   }
 
-
+  ionViewDidEnter() {
+   this.openModalInicio();
+   this.setupCanvas();
+  }
   setupCanvas() {
     const canvas = document.getElementById('pentagramCanvas') as HTMLCanvasElement;
 
@@ -169,7 +174,8 @@ export class DictadoPage implements OnInit {
    const pentagram = new Image();
    if(this.numeroId == 3 || this.numeroId == 5 || this.numeroId == 6 ){
       pentagram.src = "./assets/images/pentagrama_recortado2.png"; 
-   }else  pentagram.src = "./assets/images/pentagrama_recortado.png";
+      
+   }else  pentagram.src = "./assets/images/pentagrama_recortado1.png";
    
    // Asegurarnos de que la imagen se ha cargado antes de dibujarla
    pentagram.onload = () => {
@@ -286,6 +292,7 @@ export class DictadoPage implements OnInit {
 
   }
   goDictados(){
+
     this.pauseAudio();
     this.clearCanvas();
     this.closeModalDictados();
@@ -302,20 +309,35 @@ export class DictadoPage implements OnInit {
 
   //Combinar canvas para pasar al Api en el momento de su uso
   combineCanvases() {
-    // Crear un canvas nuevo en memoria para combinar la imagen de los dos canvas
-    let combinedCanvas = document.createElement('canvas');
-    combinedCanvas.width = this.canvasElement.width;
-    combinedCanvas.height = this.canvasElement.height;
-    let combinedCtx = combinedCanvas.getContext('2d');
 
-    // Dibujar el canvas del pentagrama
-    if (combinedCtx) {
-      combinedCtx.drawImage(this.pentagramCanvasElement, 0, 0);
+
+  // Crear un canvas nuevo en memoria con el tamaño del canvasElement
+  let combinedCanvas = document.createElement('canvas');
+  combinedCanvas.width = this.canvasElement.width;
+  combinedCanvas.height = this.canvasElement.height;
+  let combinedCtx = combinedCanvas.getContext('2d');
+
+  // Dibujar el canvas del pentagrama ajustando su tamaño para encajar en el canvas combinado
+  if (combinedCtx) {
+      // Asumimos que el ancho del pentagramCanvas ya está ajustado correctamente en la página
+      const pentagramWidth = this.pentagramCanvasElement.width;
+      const pentagramHeight = this.pentagramCanvasElement.height;
+
+      combinedCtx.drawImage(
+          this.pentagramCanvasElement,
+          0, 0, pentagramWidth, pentagramHeight,
+          0, 0, combinedCanvas.width, combinedCanvas.height
+      );
 
       // Dibujar el canvas del dictado
-      combinedCtx.drawImage(this.canvasElement, 0, 0);
-    }
+      combinedCtx.drawImage(
+          this.canvasElement,
+          0, 0, this.canvasElement.width, this.canvasElement.height,
+          0, 0, combinedCanvas.width, combinedCanvas.height
+      );
+  }
 
+ 
     this.combinedImageUrl = combinedCanvas.toDataURL('image/png');
   }
 
@@ -330,19 +352,22 @@ export class DictadoPage implements OnInit {
     const body = { image: this.combinedImageUrl };
 
     // Realiza la petición POST usando HttpClient
-    this.http.post(apiUrl, body)
-      .pipe(
-        catchError(error => {
-          console.error('Error al enviar la imagen', error);
-          throw error; // Propaga el error para manejarlo en algún otro lugar si es necesario
-        })
-      )
-      .subscribe(response => {
-        console.log('Imagen enviada a la petición', response);
-        // Lógica adicional después de recibir la respuesta de la API
-      });
+
+  //METODO 1
+  //  this.http.post(apiUrl, body)
+  //    .pipe(
+  //      catchError(error => {
+  //        console.error('Error al enviar la imagen', error);
+  //        throw error; // Propaga el error para manejarlo en algún otro lugar si es necesario
+  //      })
+  //    )
+  //    .subscribe(response => {
+  //      console.log('Imagen enviada a la petición', response);
+  //      // Lógica adicional después de recibir la respuesta de la API
+  //    });
   
 
+  //METODO 2
    // const apiUrl = 'URL';
    // const headers = new HttpHeaders({
    //   'Content-Type': 'application/json'
@@ -350,7 +375,7 @@ export class DictadoPage implements OnInit {
    // const body = {
    //   image: this.combinedImageUrl
    // };
-//
+  
    // this.http.post(apiUrl, body, {headers}).subscribe(
    //   response => {
    //     console.log('Imagen enviada a la peticion', response);
@@ -360,10 +385,10 @@ export class DictadoPage implements OnInit {
    //   }
    // )
 
-   // let link = document.createElement('a');
-   // link.href=this.combinedImageUrl;
-   // link.download = 'canvas-image.png';
-   // link.click();
+   let link = document.createElement('a');
+   link.href=this.combinedImageUrl;
+   link.download = 'canvas-image.png';
+   link.click();
   }
 
 //Eventos de audio de dictado
@@ -387,6 +412,22 @@ playAudio(){
   }
 
   //Funciones para los modales
+  closeModalInicio() {
+    const modal = document.getElementById('myModalInicio');
+    if (modal) {
+      modal.style.display = 'none';
+    }
+    this.audio_button.play();
+    this.playAudio();
+  }
+  openModalInicio() {
+    const modal = document.getElementById('myModalInicio');
+    if (modal) {
+      modal.style.display = 'block';
+    }
+  }
+
+
   openModalHome() {
     const modal = document.getElementById('myModal');
     if (modal) {
@@ -396,6 +437,8 @@ playAudio(){
   }
 
   // Método para cerrar el modal
+
+
   closeModalHome() {
     const modal = document.getElementById('myModal');
     if (modal) {
