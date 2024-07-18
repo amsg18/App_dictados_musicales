@@ -6,7 +6,6 @@ import { IonicModule } from '@ionic/angular';
 
 import { MockPageRoutingModule } from './mock-routing.module';
 
-import { MockPage } from './mock.page';
 
 @NgModule({
   imports: [
@@ -15,6 +14,6 @@ import { MockPage } from './mock.page';
     IonicModule,
     MockPageRoutingModule
   ],
-  declarations: [MockPage]
+
 })
 export class MockPageModule {}

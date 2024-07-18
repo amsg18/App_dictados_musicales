@@ -302,8 +302,8 @@ export class DictadoPage implements OnInit {
 
   goCorreccion(){
     this.pauseAudio();
+    this.router.navigate(['/mock'], {queryParams: {imageId: this.numeroId, tipo_ejercicio: this.dictadosId}});
     this.closeModalCorreccion();
-    this.router.navigate(['/mock'], {queryParams: {imageId: this.numeroId, tipo_ejercicio: this.dictadosId}})
   }
 
 
@@ -429,6 +429,7 @@ playAudio(){
 
 
   openModalHome() {
+    this.pauseAudio();
     const modal = document.getElementById('myModal');
     if (modal) {
       modal.style.display = 'block';
@@ -448,6 +449,7 @@ playAudio(){
   }
 
   openModalDictados() {
+    this.pauseAudio();
     const modal = document.getElementById('myModalDictados');
     if (modal) {
       modal.style.display = 'block';
@@ -464,6 +466,7 @@ playAudio(){
     this.audio_button.play();
   }
   openModalCorreccion() {
+    this.pauseAudio();
     const modal = document.getElementById('myModalCorreccion');
     if (modal) {
       modal.style.display = 'block';

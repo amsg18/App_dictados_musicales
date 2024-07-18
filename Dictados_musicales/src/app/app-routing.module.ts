@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { MockPage } from './mock/mock.page';
 
 const routes: Routes = [
   {
@@ -33,7 +34,7 @@ const routes: Routes = [
   },
   {
     path: 'mock',
-    loadChildren: () => import('./mock/mock.module').then( m => m.MockPageModule)
+    component: MockPage
   },
 ];
 
