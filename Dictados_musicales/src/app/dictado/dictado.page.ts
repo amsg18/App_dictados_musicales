@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {ActivatedRoute} from '@angular/router';
-
-
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 @Component({
   selector: 'app-dictado',
   templateUrl: './dictado.page.html',
@@ -32,7 +32,7 @@ export class DictadoPage implements OnInit {
   sizeBrush:number = 2;           // para cambiar el tamaño del pincel
   borrador:boolean = false;       //se distingue entre borrador o pincel
 
-  constructor(private router:Router, private route:ActivatedRoute) { 
+  constructor(private router:Router, private route:ActivatedRoute, private http: HttpClient) { 
 
   }
 
@@ -42,6 +42,7 @@ export class DictadoPage implements OnInit {
       this.articleID = +params['id']; // + es para convertir en número
       this.dictadosId = +params['dictadosId'];
     })
+
    }
   ngAfterViewInit(){
     this.canvasElement = this.canvas.nativeElement;
@@ -55,70 +56,70 @@ export class DictadoPage implements OnInit {
     //SELECCION DEL DICTADO SEGUN EL TIPO DE EJERCICIO Y EL NUMERO ELEGIDO, solo se cuentan con 6 dictados diferentes para realizar las pruebas
     switch (this.dictadosId) {
       case 3 :
-        this.audio.src = './assets/audios/Dictado1.wav'; 
+        this.audio.src = './assets/audios/dictados/Dictado1.wav'; 
         this.numeroId = 1;
         break;
       case 4 :
         if( this.articleID % 2 == 0 ){
-          this.audio.src = './assets/audios/Dictado6.wav'
+          this.audio.src = './assets/audios/dictados/Dictado6.wav'
           this.numeroId = 6;
         } else {
-          this.audio.src = './assets/audios/Dictado2.wav';
+          this.audio.src = './assets/audios/dictados/Dictado2.wav';
           this.numeroId = 2;
         }
         break;
       case 5 :
           if( this.articleID == 1 || this.articleID == 4 || this.articleID == 7){
-            this.audio.src = './assets/audios/Dictado1.wav'; 
+            this.audio.src = './assets/audios/dictados/Dictado1.wav'; 
             this.numeroId = 1;
           }else if(this.articleID == 2 || this.articleID == 5 || this.articleID == 8){
-            this.audio.src = './assets/audios/Dictado2.wav'; 
+            this.audio.src = './assets/audios/dictados/Dictado2.wav'; 
             this.numeroId = 2;
           }else{
-            this.audio.src = './assets/audios/Dictado6.wav';
+            this.audio.src = './assets/audios/dictados/Dictado6.wav';
             this.numeroId = 6;
           }  
         break;
       case 6:
         if( this.articleID == 1 || this.articleID == 4 || this.articleID == 7){
-          this.audio.src = './assets/audios/Dictado3.wav'; 
+          this.audio.src = './assets/audios/dictados/Dictado3.wav'; 
           this.numeroId = 3;
         }else if(this.articleID == 2 || this.articleID == 5 || this.articleID == 8){
-          this.audio.src = './assets/audios/Dictado5.wav'; 
+          this.audio.src = './assets/audios/dictados/Dictado5.wav'; 
           this.numeroId = 5;
         }else{
-          this.audio.src = './assets/audios/Dictado4.wav';
+          this.audio.src = './assets/audios/dictados/Dictado4.wav';
           this.numeroId = 4;
         } 
         break;
       case 7:
         switch (this.articleID) {
           case 1:
-            this.audio.src = './assets/audios/Dictado1.wav'; 
+            this.audio.src = './assets/audios/dictados/Dictado1.wav'; 
             this.numeroId = 1;
             break;
           case 2:
-            this.audio.src = './assets/audios/Dictado2.wav';
+            this.audio.src = './assets/audios/dictados/Dictado2.wav';
             this.numeroId = 2;
             break;
           case 3:
-            this.audio.src = './assets/audios/Dictado3.wav';
+            this.audio.src = './assets/audios/dictados/Dictado3.wav';
             this.numeroId = 3;
             break;
           case 4:
-            this.audio.src = './assets/audios/Dictado4.wav';
+            this.audio.src = './assets/audios/dictados/Dictado4.wav';
             this.numeroId = 4;
           break;
           case 5:
-            this.audio.src = './assets/audios/Dictado5.wav';
+            this.audio.src = './assets/audios/dictados/Dictado5.wav';
             this.numeroId = 5;
           break;
           case 6:
-            this.audio.src = './assets/audios/Dictado6.wav';
+            this.audio.src = './assets/audios/dictados/Dictado6.wav';
             this.numeroId = 6;
           break;
           default:
-            this.audio.src = './assets/audios/Dictado1.wav'; // Audio por defecto
+            this.audio.src = './assets/audios/dictados/Dictado1.wav'; // Audio por defecto
             this.numeroId = 1;
             break;
         }
@@ -127,9 +128,13 @@ export class DictadoPage implements OnInit {
 
     this.audio.load();
     this.setupCanvas();
+    this.openModalInicio();
   }
 
-
+  ionViewDidEnter() {
+   this.openModalInicio();
+   this.setupCanvas();
+  }
   setupCanvas() {
     const canvas = document.getElementById('pentagramCanvas') as HTMLCanvasElement;
 
@@ -169,7 +174,8 @@ export class DictadoPage implements OnInit {
    const pentagram = new Image();
    if(this.numeroId == 3 || this.numeroId == 5 || this.numeroId == 6 ){
       pentagram.src = "./assets/images/pentagrama_recortado2.png"; 
-   }else  pentagram.src = "./assets/images/pentagrama_recortado.png";
+      
+   }else  pentagram.src = "./assets/images/pentagrama_recortado1.png";
    
    // Asegurarnos de que la imagen se ha cargado antes de dibujarla
    pentagram.onload = () => {
@@ -286,6 +292,7 @@ export class DictadoPage implements OnInit {
 
   }
   goDictados(){
+
     this.pauseAudio();
     this.clearCanvas();
     this.closeModalDictados();
@@ -295,37 +302,93 @@ export class DictadoPage implements OnInit {
 
   goCorreccion(){
     this.pauseAudio();
+    this.router.navigate(['/mock'], {queryParams: {imageId: this.numeroId, tipo_ejercicio: this.dictadosId}});
     this.closeModalCorreccion();
-    this.router.navigate(['/correccion'], {queryParams: {imageId: this.numeroId, tipo_ejercicio: this.dictadosId}})
   }
 
 
   //Combinar canvas para pasar al Api en el momento de su uso
   combineCanvases() {
-    // Crear un canvas nuevo en memoria para combinar la imagen de los dos canvas
-    let combinedCanvas = document.createElement('canvas');
-    combinedCanvas.width = this.canvasElement.width;
-    combinedCanvas.height = this.canvasElement.height;
-    let combinedCtx = combinedCanvas.getContext('2d');
 
-    // Dibujar el canvas del pentagrama
-    if (combinedCtx) {
-      combinedCtx.drawImage(this.pentagramCanvasElement, 0, 0);
+
+  // Crear un canvas nuevo en memoria con el tamaño del canvasElement
+  let combinedCanvas = document.createElement('canvas');
+  combinedCanvas.width = this.canvasElement.width;
+  combinedCanvas.height = this.canvasElement.height;
+  let combinedCtx = combinedCanvas.getContext('2d');
+
+  // Dibujar el canvas del pentagrama ajustando su tamaño para encajar en el canvas combinado
+  if (combinedCtx) {
+      // Asumimos que el ancho del pentagramCanvas ya está ajustado correctamente en la página
+      const pentagramWidth = this.pentagramCanvasElement.width;
+      const pentagramHeight = this.pentagramCanvasElement.height;
+
+      combinedCtx.drawImage(
+          this.pentagramCanvasElement,
+          0, 0, pentagramWidth, pentagramHeight,
+          0, 0, combinedCanvas.width, combinedCanvas.height
+      );
 
       // Dibujar el canvas del dictado
-      combinedCtx.drawImage(this.canvasElement, 0, 0);
-    }
+      combinedCtx.drawImage(
+          this.canvasElement,
+          0, 0, this.canvasElement.width, this.canvasElement.height,
+          0, 0, combinedCanvas.width, combinedCanvas.height
+      );
+  }
 
+ 
     this.combinedImageUrl = combinedCanvas.toDataURL('image/png');
   }
 
   //descargar la imagen que se combina para hacer pruebas
   downloadImage(){
     this.combineCanvases();
-    let link = document.createElement('a');
-    link.href=this.combinedImageUrl;
-    link.download = 'canvas-image.png';
-    link.click();
+  
+    // URL de la API
+    const apiUrl = 'URL_DE_TU_API';
+
+    // Cuerpo de la solicitud HTTP
+    const body = { image: this.combinedImageUrl };
+
+    // Realiza la petición POST usando HttpClient
+
+  //METODO 1
+  //  this.http.post(apiUrl, body)
+  //    .pipe(
+  //      catchError(error => {
+  //        console.error('Error al enviar la imagen', error);
+  //        throw error; // Propaga el error para manejarlo en algún otro lugar si es necesario
+  //      })
+  //    )
+  //    .subscribe(response => {
+  //      console.log('Imagen enviada a la petición', response);
+  //      // Lógica adicional después de recibir la respuesta de la API
+  //    });
+  
+
+  //METODO 2
+   // const apiUrl = 'URL';
+   // const headers = new HttpHeaders({
+   //   'Content-Type': 'application/json'
+   // });
+   // const body = {
+   //   image: this.combinedImageUrl
+   // };
+  
+   // this.http.post(apiUrl, body, {headers}).subscribe(
+   //   response => {
+   //     console.log('Imagen enviada a la peticion', response);
+   //   },
+   //   error => {
+   //     console.error('Error al enviar la imagen', error);
+   //   }
+   // )
+
+   let link = document.createElement('a');
+   link.href=this.combinedImageUrl;
+   link.download = 'canvas-image.png';
+   link.click();
   }
 
 //Eventos de audio de dictado
@@ -349,7 +412,24 @@ playAudio(){
   }
 
   //Funciones para los modales
+  closeModalInicio() {
+    const modal = document.getElementById('myModalInicio');
+    if (modal) {
+      modal.style.display = 'none';
+    }
+    this.audio_button.play();
+    this.playAudio();
+  }
+  openModalInicio() {
+    const modal = document.getElementById('myModalInicio');
+    if (modal) {
+      modal.style.display = 'block';
+    }
+  }
+
+
   openModalHome() {
+    this.pauseAudio();
     const modal = document.getElementById('myModal');
     if (modal) {
       modal.style.display = 'block';
@@ -358,6 +438,8 @@ playAudio(){
   }
 
   // Método para cerrar el modal
+
+
   closeModalHome() {
     const modal = document.getElementById('myModal');
     if (modal) {
@@ -367,6 +449,7 @@ playAudio(){
   }
 
   openModalDictados() {
+    this.pauseAudio();
     const modal = document.getElementById('myModalDictados');
     if (modal) {
       modal.style.display = 'block';
@@ -383,6 +466,7 @@ playAudio(){
     this.audio_button.play();
   }
   openModalCorreccion() {
+    this.pauseAudio();
     const modal = document.getElementById('myModalCorreccion');
     if (modal) {
       modal.style.display = 'block';

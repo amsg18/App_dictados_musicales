@@ -3,15 +3,15 @@
 <div id="myModal" class="modal">
   <div class="modal-content">
     <section class="modal-title">
-      <p class="title-font coment1">Si sales perderá el progreso realizado</p>
+      <p class="title-font coment1">Si sales perderás el progreso realizado</p>
       <h1 class="title-font coment2">¿Deseas salir?</h1>
     </section>
     <section class="opciones-salir">
       <div class="modal-button" (click)="closeModalHome()">
-        <i class="icon-cancel cruz" ></i>
+        <span class="icon-cancel cruz" alt="icono de cruz para cancelar la accion"></span>
       </div>
-      <div class="modal-button" (click)="goHome()">
-        <i class="icon-ok check"></i>
+      <div class="modal-button" (click)="goHome()" alt="icono de un simbolo check para confirmar la accion">
+        <span class="icon-ok check"></span>
       </div>
     </section>  
   </div>
@@ -19,15 +19,15 @@
 <div id="myModalDictados" class="modal">
   <div class="modal-content">
     <section class="modal-title">
-      <p class="title-font coment1">Si sales perderá el progreso realizado</p>
+      <p class="title-font coment1">Si sales perderás el progreso realizado</p>
       <h1 class="title-font coment2">¿Deseas salir?</h1>
     </section>
     <section class="opciones-salir">
-      <div class="modal-button" (click)="closeModalDictados()">
-        <i class="icon-cancel cruz" ></i>
+      <div class="modal-button" (click)="closeModalDictados()" alt="icono de cruz para cancelar la accion">
+        <span class="icon-cancel cruz" ></span>
       </div>
-      <div class="modal-button" (click)="goDictados()">
-        <i class="icon-ok check"></i>
+      <div class="modal-button" (click)="goDictados()" alt="icono de un simbolo check para confirmar la accion">
+        <span class="icon-ok check"></span>
       </div>
     </section>  
   </div>
@@ -38,11 +38,25 @@
       <h1 class="title-font coment2">¿Deseas finalizar la tarea?</h1>
     </section>
     <section class="opciones-salir">
-      <div class="modal-button" (click)="closeModalCorreccion()">
-        <i class="icon-cancel cruz" ></i>
+      <div class="modal-button" (click)="closeModalCorreccion()" alt="icono de cruz para cancelar la accion">
+        <span class="icon-cancel cruz" ></span>
       </div>
       <div class="modal-button" (click)="goCorreccion()">
-        <i class="icon-ok check"></i>
+        <span class="icon-ok check" alt="icono de un simbolo check para confirmar la accion"></span>
+      </div>
+    </section>  
+  </div>
+</div>
+
+<div id="myModalInicio" class="modal">
+  <div class="modal-content">
+    <section class="modal-title ">
+      <h1 class="title-font coment2">Escucha y escribe el dictado</h1>
+      <h2 class="title-font coment1">Dale al play para empezar</h2>
+    </section>
+    <section class="opciones-salir">
+      <div class="modal-button modal-button-inicio" (click)="closeModalInicio()" alt="icono de cruz para cancelar la accion">
+        <span class="icon-play play-modal " ></span>
       </div>
     </section>  
   </div>
@@ -52,17 +66,17 @@
 <ion-content [fullscreen]="true" [forceOverscroll]="false">
   <header>
     <section class="icon-section efecto">
-      <i class="icon-home efecto " (click)="openModalHome()"></i>
+      <span class="icon-home efecto " (click)="openModalHome()"  alt="icono de casa para volver a la pantalla inicial"></span>
     </section>
   </header>
   <!--Canvas de dibujado y canvas con la imagen del pentgrama-->
   <section class="canvas-section">  
     <article class="icon-column">
       <div class="lapiz">
-        <i class = "icon-pencil cuadro-boton " (click)="changeToBrush()" [ngClass]="{'selected-tool': borrador === false}"></i>
+        <span class = "icon-pencil cuadro-boton tam" (click)="changeToBrush()" [ngClass]="{'selected-tool': borrador === false}" alt="icono de un lapiz para seleccionar esta herramienta"></span>
       </div>
       <div class="efecto">
-        <i class = "icon-eraser cuadro-boton " (click)=" changeToEraser()" [ngClass]="{'selected-tool': borrador === true}" ></i>
+        <span class = "icon-eraser cuadro-boton tam" (click)=" changeToEraser()" [ngClass]="{'selected-tool': borrador === true}" alt="icono de un borrador para seleccionar esta herramienta"></span>
       </div>
       </article>
     <article class="canvas-container">
@@ -81,12 +95,12 @@
   <audio #audioElement></audio>
   <audio #audioButton></audio>
   <footer>
-    <i class="icon-left-open " (click)="openModalDictados()"></i>
+    <span class="icon-left-open " (click)="openModalDictados()" alt="flecha hacia la izquierda, para regresar a la pantalla anterior"></span>
     <section class="efecto play">
-      <i class="icon-play efecto" (click)="playAudio()"></i>
+      <span class="icon-play efecto tam" (click)="playAudio()" alt="icono de play para reproducir el audio"></span>
     </section>
     <section class="efecto">
-      <i class="icon-ok cuadro-boton  " id="ok" (click)="openModalCorreccion()"></i>
+      <span class="icon-ok cuadro-boton tam " id="ok" (click)="openModalCorreccion()" alt="icono de un simbolo check para corregir el dictado"></span>
     </section>
   </footer>
 

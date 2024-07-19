@@ -1,0 +1,34 @@
+<body>
+  <div class="header">
+    <section class="icon-section efecto">
+      <span class="icon-home efecto"  (click)="goHome()" alt="icono de casa para volver a la pantalla inicial"></span>
+    </section>
+    <h1 class="title-font">Dictado realizado</h1>
+    <section class="efecto">
+      <span class="icon-download efecto"  alt="icono para descargar la correccion del dictado"></span>
+    </section>
+  </div>
+  <section>
+    <div class="canvas-dictado">
+    <canvas #canvas width="1000"></canvas>
+    </div>
+
+  <!--<button (click)="corrige()">Corrige</button>-->
+  </section >
+  <hr>
+  <h1 class="title-font title-correccion"> <span class="title-font aciertos"> Aciertos: {{porcentaje}}% </span></h1>
+  <section class="seccion-correccion">
+  <div *ngIf="pentagrama" id="verovio" >
+    <app-partitura [pentagrama]="pentagrama" class="solucion"></app-partitura>
+  </div>
+</section>
+  <!-- <div *ngIf="porcentaje">
+   <p class="title-font">Porcentaje acierto: {{porcentaje}}%</p>
+  </div>-->
+  <footer>
+    <section>
+      <p class="cuadro-boton title-font efecto" (click)="goDictados()">Más ejercicios</p>
+    </section>
+  </footer>
+  <audio #audioButton></audio>
+<body>

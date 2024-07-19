@@ -1,0 +1,169 @@
+body{
+  background-color: var(--blanco);
+    --background: var(--amarillo);
+    //padding: 10px;
+   // max-height: 100%;
+   // max-width: 100%;
+    //overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    display: block;
+
+}
+header{
+  margin-bottom: 2em;
+  padding-bottom: 2em;
+  background-color: var(--amarillo);
+}
+section{
+  background-color: var(--amarillo);
+}
+
+#output{
+  background-color: var(--blanco);
+}
+  
+  canvas {
+    border-radius: 1.5em;
+    position: relative;
+
+  
+  }
+
+  .canvas-dictado{
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .header{
+   display: flex;
+    justify-content: space-between;
+    align-items: center;
+   // margin-bottom: -10px;
+   background-color: var(--amarillo);
+   padding-bottom: 2em;
+  
+  }
+  span {
+    color:var(--azul-oscuro);
+    font-size: 40px;
+    cursor: pointer;
+  }
+  
+  footer {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-right: 2em ;
+    margin-top: -20px;
+  }
+  h1{
+    font-size: 7vh;
+    background-color: var(--amarillo);
+    
+  }
+  p{
+    font-size: 5vh;
+  }
+
+  article {
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  body{
+    background-color: var(--amarillo);
+  }
+  //Estilo por clase
+
+  .aciertos{
+    color: var(--negro);
+    font-size: 7 vh;
+    cursor: default;
+  }
+  
+  .cuadro-boton{
+    border: 2px solid;
+    border-color: var(--negro);
+    background: var(--azul-oscuro);
+    width: auto;
+    height: auto;
+    border-radius: 0.2em;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    cursor: pointer;
+    color: var(--blanco);
+    font-size: 32px;
+  }
+  .efecto:active{
+    transform: scale(0.9);
+  
+}
+.solucion{
+  background-color: #FFF;
+  border-radius: 5vh;
+  padding-top: 4vh;
+  padding-bottom: 1vh;
+  width: fit-content;
+}
+
+
+.title-correccion{
+  align-items: center;
+  text-align: center;
+}
+
+#verovio{
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  display: flex;
+ 
+}
+  
+canvas{
+  width:60vw;
+}
+
+span{
+  font-size: 6vh;
+}
+
+
+//MEDIA QUERIES
+//Se tiene en cuenta la altura y el ancho por separado para ajustar el tamaño de cualquier pantalla
+
+//Condiciones para el ancho
+  @media (min-width:901px){
+    canvas{
+      width: 75vw;
+    }
+
+    
+  }
+  .cuadro-boton{
+    font-size: 8vh;
+  }
+////Condiciones para el alto  
+  @media (min-height:549px){
+    canvas{
+        height: 25vh;
+    }
+
+  }
+  @media (max-height:548px){
+    canvas{
+      height: 40vh;
+    }
+    span{
+      font-size: 4.5vh;
+    }
+
+    .cuadro-boton{
+      font-size: 6vh;
+    }
+  }
+  

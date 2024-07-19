@@ -4,11 +4,11 @@
 
   <header>
     <section class="icon-section efecto">
-      <i class="icon-home efecto" (click)="goHome()"></i>
+      <span class="icon-home efecto" (click)="goHome()"></span>
     </section>
     <section class="title-section">
       <!--Esto cambiara con el typescript segun el tipo de ejercicio seleccionado-->
-      <h1 class="title-font" #mainTitle id="mainTitle">Dictados con 3 notas</h1> 
+      <h1 class="title-font" #mainTitle id="mainTitle" alt="icono de casa para volver a la pantalla inicial" >Dictados con 3 notas</h1> 
       <h2 class="title-font" #subtitle id="subtitle">Do mi sol</h2>
     </section>
   </header>
@@ -45,7 +45,7 @@
   </section>
 
   <footer>
-    <i class="icon-left-open" (click)="goEjercicios()"></i>
+    <span class="icon-left-open efecto" (click)="goEjercicios()" alt="flecha hacia la izquierda, para regresar a la pantalla anterior"></span>
   </footer>
   <audio #audioButton></audio>
 </ion-content>
